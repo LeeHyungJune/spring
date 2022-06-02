@@ -1,4 +1,3 @@
-var contentFull = true;
 $(document).ready(function(){
 	$(document.frm.gen).change(function(){
 		var sgen = $(this).val();
@@ -30,7 +29,7 @@ $(document).ready(function(){
 		}
 		// 전달해서 사용가능 유무 판단하고
 		$.ajax({
-			url: '/whistle/member/idCheck.blp',
+			url: '/www/member/idCheck.blp',
 			type: 'post',
 			dataType: 'json',
 			data: {
@@ -128,12 +127,36 @@ $(document).ready(function(){
 			return;
 		}
 		*/
-		$('#frm').attr('action', '/whistle/member/joinProc.blp').submit();
+		$('#frm').attr('action', '/www/member/joinProc.blp').submit();
 		
 	});
 	
 	$('#hbtn').click(function(){
-		$(location).attr('href','/whistle/main.blp');
+		$(location).attr('href','/www/main.blp');
 	});
 	
+	/*
+	$('#gen').change(function(){
+		var sgen = $('[name="gen"]:checked').val();
+		
+		$('#avtfr').stop().slideUp(300, function(){
+			if(sgen == 'M') {
+				$('#favt').css('display','none');
+				$('#mavt').css('display','block');
+			} else {
+				$('#favt').css('display','block');
+				$('#mavt').css('display','none');
+			}
+			
+			$('#avtfr')stop().slideDown(300);
+		});
+	});
+	
+	$('#jbtn').click(function(){
+		//	데이터 유효성 검사
+		
+		$('#frm').attr('action','www/member/joinProc.blp');
+		$('#frm').submit();
+	)};
+	*/
 });

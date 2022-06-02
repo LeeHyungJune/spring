@@ -14,22 +14,22 @@ $(document).ready(function(){
 	});
 	
 	$('#mlbtn').click(function(){
-		$(location).attr('href','/whistle/member/memberList.blp');
+		$(location).attr('href','/www/member/memberList.blp');
 	});
 	
 	$('#ibtn').click(function(){
-		$(location).attr('href', '/whistle/member/myInfo.blp');
+		$(location).attr('href', '/www/member/myInfo.blp');
 	});
 	
 	$('#gbtn').click(function(){
-		$(location).attr('href','/whistle/guestBoard/gBoardList.blp');
+		$(location).attr('href','/www/guestBoard/gBoardList.blp');
 	});
 	
 	$('#rbtn').click(function(){
-		$(location).attr('href','/whistle/reboard/reboardList.blp');
+		$(location).attr('href','/www/reboard/reboardList.blp');
 	});
 	
 	$('#fbtn').click(function(){
-		$(location).attr('href','/whistle/board/boardList.blp');
+		$(location).attr('href','/www/board/boardList.blp');
 	});
 });
