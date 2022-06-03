@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Whistle Join</title>
+<title>Whistle Edit Information</title>
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/www/js/member/join.js"></script>
+<script type="text/javascript" src="/www/js/member/edit.js"></script>
 <style type="text/css">
 	.avtimg {
 		width: 100px;
@@ -19,7 +19,7 @@
 		width: 102px;
 		height: 117px;
 	}
-	#pwmsg, #repwmsg, #avtfr, #idmsg {
+	#pwmsg, #repwmsg {
 		display: none;
 	}
 	
@@ -36,30 +36,32 @@
 		top: 2px;
 		left: 7px;
 	}
+	
+	h4 {
+		margin: 0px;
+	}
 </style>
 <script type="text/javascript">
-	var sessionId = '${SID}';
+
 </script>
 </head>
 <body>
 	<div class="w3-content w3-margin-top mxw700">
 		<!-- 타이틀 -->
-		<h1 class="w3-pink w3-center w3-padding w3-card-4">Whistle 회원가입</h1>
+		<h1 class="w3-pink w3-center w3-padding w3-card-4">Whistle 회원 정보수정</h1>
 		<form method="POST" action="" name="frm" id="frm"
 			class="w3-col w3-margin-top w3-margin-bottom w3-padding w3-card-4">
+			<input type="hidden" id="tmail" value="${DATA.mail}">
+			<input type="hidden" id="ttel" value="${DATA.tel}">
+			<input type="hidden" id="tano" value="${DATA.ano}">
+			<input type="hidden" name="mno" value="${DATA.mno}">
 			<div>
-				<label for="name" class="w3-col s3 w3-right-align w3-margin-top clrgrey ft14 mgb10">회원이름 : </label>
-				<input type="text" name="name" id="name" class="w3-col s8 w3-margin-top mgl10 w3-input w3-border mgb10">
+				<label class="w3-col s3 w3-right-align w3-margin-top clrgrey ft14 mgb10">회원이름 : </label>
+				<h4 class="w3-col s8 w3-center w3-margin-top mgl10 mgb10">${DATA.name}</h4>
 			</div>
 			<div>
 				<label for="id" class="w3-col s3 w3-right-align clrgrey ft14 mgb10">아 이 디 : </label>
-				<div class="w3-col s8 mgl10">
-						<div class="w3-col w100 w3-button w3-blue w3-right pd9-16" id="idck">id check</div>
-					<div class="w3-rest pdr10">
-						<input type="text" name="id" id="id" class="w3-input w3-border mgb10">
-					</div>
-					<span class="w3-col mgb10 w3-center" id="idmsg"></span>
-				</div>
+				<h4 class="w3-col s8 w3-center mgb10">${DATA.id}</h4>
 			</div>
 			<div>
 				<label for="pw" class="w3-col s3 w3-right-align clrgrey ft14 mgb10">비밀번호 : </label>
@@ -71,56 +73,40 @@
 			<div>
 				<label for="repw" class="w3-col s3 w3-right-align clrgrey ft14 mgb10">pw check : </label>
 				<div class="w3-col s8 mgl10 mgb10">
-					<input type="password" name="repw" id="repw" class="w3-col w3-input w3-border">
+					<input type="password" id="repw" class="w3-col w3-input w3-border">
 					<span class="w3-col w3-text-red w3-center" id="repwmsg"># 비밀번호가 일치하지 않습니다.</span>
 				</div>
 			</div>
 			<div>
 				<label for="mail" class="w3-col s3 w3-right-align clrgrey ft14 mgb10">회원메일 : </label>
-				<input type="text" name="mail" id="mail" class="w3-col s8 mgl10 w3-input w3-border mgb10">
+				<input type="text" name="mail" id="mail" class="w3-col s8 mgl10 w3-input w3-border mgb10" value="${DATA.mail}">
 			</div>
 			<div>
 				<label for="tel" class="w3-col s3 w3-right-align clrgrey ft14 mgb10">전화번호 : </label>
-				<input type="text" name="tel" id="tel" class="w3-col s8 mgl10 w3-input w3-border mgb10">
+				<input type="text" name="tel" id="tel" class="w3-col s8 mgl10 w3-input w3-border mgb10" value="${DATA.tel}">
 			</div>
 			<div>
 				<label class="w3-col s3 w3-right-align clrgrey ft14 mgb10">회원성별 : </label>
-				<div class="w3-col s8 mgl10 mgb10 w3-center" id="gen">
-					<div class="w3-half">
-						<input type="radio" name="gen" id="mgen" class="w3-radio" value="M"> <label for="mgen"> 남자</label>
-					</div>
-					<div class="w3-half">
-						<input type="radio" name="gen" id="fgen" class="w3-radio" value="F"> <label for="fgen"> 여자</label>
-					</div>
-				</div>
+				<h4 class="w3-col s8 mgl10 w3-center mgb10 w3-center">${DATA.gen eq "M" ? "남자": "여자" }</h4>
 			</div>
 			<div class="w3-col" id="avtfr">
 				<label class="w3-col s3 w3-right-align clrgrey ft14 mgb10">아 바 타 : </label>
 				<div class="w3-col s8 mgl10 mgb10 w3-center">
-						<div class="avtboxfr w3-center w3-margin-top" id="mavt">
+						<div class="avtboxfr w3-center w3-margin-top" id="avt">
 		<c:forEach var="data" items="${LIST}">
-			<c:if test="${data.gen eq 'M'}">
 						 	<div class="avtbox">
-						 		<label for="mavt${data.ano}">
+						 		<label for="avt${data.ano}">
 						 			<img src="/www/img/avatar/${data.savename}" class="w3-col avtimg">
 						 		</label>
-						 		<input type="radio" name="ano" id="mavt${data.ano}" value="${data.ano}">
+				<c:if test="${data.ano eq DATA.ano}">
+						 		<input type="radio" name="ano" id="avt${data.ano}" value="${data.ano}" checked>
+				</c:if>
+				<c:if test="${data.ano ne DATA.ano}">
+						 		<input type="radio" name="ano" id="avt${data.ano}" value="${data.ano}">
+				</c:if>
 						 	</div>
-			</c:if>
 		</c:forEach>
 						</div>
-						 <div class="avtboxfr w3-center w3-margin-top" id="favt">
-		<c:forEach var="data" items="${LIST}">
-			<c:if test="${data.gen eq 'F'}">
-						 	<div class="avtbox">
-						 		<label for="favt${data.ano}">
-						 			<img src="/www/img/avatar/${data.savename}" class="w3-col avtimg">
-						 		</label>
-						 		<input type="radio" name="ano" id="favt${data.ano}" value="${data.ano}">
-						 	</div>
-			</c:if>
-		</c:forEach>
-				 		</div>
 				</div>
 			</div>
 		</form>
@@ -129,7 +115,7 @@
 		<div class="w3-col w3-margin-top w3-card-4">
 			<div class="w3-third w3-deep-orange w3-hover-orange w3-button" id="rbtn">reset</div> 
 			<div class="w3-third w3-green w3-hover-lime w3-button" id="hbtn">home</div> 
-			<div class="w3-third w3-blue w3-hover-aqua w3-button" id="jbtn">join</div> 
+			<div class="w3-third w3-blue w3-hover-aqua w3-button" id="ebtn">edit</div> 
 		</div>
 	</div>
 </body>

@@ -18,8 +18,7 @@ $(document).ready(function(){
 	});
 	
 	$('#ibtn').click(function(){
-		$('#frm').attr('action', '/www/member/myInfo.blp');
-		$('#frm').submit();
+		$(location).attr('href', '/www/member/myInfo.blp');
 	});
 	
 	$('#gbtn').click(function(){

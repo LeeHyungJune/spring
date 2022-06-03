@@ -33,6 +33,19 @@
 			AND isshow = 'Y'
 	</select>
 	
+	
+	
+	<!-- 회원(나) 정보조회 질의명령 -->
+	<select id="getIdInfo" resultType="mVO" parameterType="String">
+		SELECT
+			mno, name, id, tel, mail, m.gen, joindate jdate, savename, ano
+		FROM
+			member m, avatar a
+		WHERE
+			avt = ano
+			AND id = #{id}
+	</select>
+	
 	<select id="addMember" parameterType="mVO">
 		INSERT INTO
 		    member(mno, name, id, pw, mail, tel, gen, avt)
@@ -40,6 +53,64 @@
 		    (SELECT NVL(MAX(mno) + 1, 1001) FROM member),
 		    #{name}, #{id}, #{pw}, #{mail}, #{tel}, #{gen}, ${ano}
 		)
+	</select>
+	
+	<!-- 회원(다른사람) 정보조회 질의명령 -->
+	<select id="getMnoInfo" resultType="mVO" parameterType="int">
+		SELECT
+			mno, name, id, tel, mail, m.gen, joindate jdate, savename, ano
+		FROM
+			member m, avatar a
+		WHERE
+			avt = ano
+			AND mno = #{mno}
+	</select>
+	
+	<!-- 회원 리스트 조회 -->
+	<select id="memberList" resultType="mVO">
+		SELECT
+			mno, name
+		FROM
+			member
+		WHERE
+			isshow = 'Y'
+	</select>
+
+	<!-- 회원 탈퇴 -->
+	<update id="delMember" parameterType="String">
+		UPDATE
+			member
+		SET
+			isshow = 'N'
+		WHERE
+			id = #{id}
+	</update>
+	
+	<select id="getEditInfo" resultType="mVO" parameterType="String">
+		SELECT
+			mno, name, id, tel, mail, m.gen, ano, savename
+		FROM
+			member m, avatar a
+		WHERE
+			avt = ano
+			AND id = #{id}
+	</select>
+	
+	<select id="genAvtList" resultType="mVO" parameterType="String">
+		SELECT
+			ano, savename
+		FROM
+			avatar
+		WHERE
+			gen = (
+				SELECT
+					gen
+				FROM
+					member
+				WHERE
+				id = #{id}
+			)
+			AND isshow = 'Y'
 	</select>
 	
 </mapper>

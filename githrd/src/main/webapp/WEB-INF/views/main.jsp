@@ -38,7 +38,7 @@
 		<input type="hidden" id="id" name="id" value="${SID}">
 	</form>
 	<div class="w3-content w3-center mw700">
-		<h1 class="w3-teal w3-padding" style="margin-bottom: 5px;">Gitrhd Project</h1>
+		<h1 class="w3-teal w3-padding" style="margin-bottom: 5px;">Githrd Project</h1>
 		<div class="w3-col">
 <c:if test="${empty SID}">
 				<div class="w3-col w3-border-bottom pdb3">
