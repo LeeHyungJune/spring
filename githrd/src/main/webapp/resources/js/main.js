@@ -23,7 +23,7 @@ $(document).ready(function(){
 	});
 	
 	$('#gbtn').click(function(){
-		$(location).attr('href','/www/guestBoard/gBoardList.blp');
+		$(location).attr('href','/www/gBoard/gBoardList.blp');
 	});
 	
 	$('#rbtn').click(function(){
@@ -32,5 +32,24 @@ $(document).ready(function(){
 	
 	$('#fbtn').click(function(){
 		$(location).attr('href','/www/board/boardList.blp');
+	});
+	
+	$('#msgClose').click(function(){
+		$('#msgWin').css('display','none');
+		
+		$.ajax({
+			url: '/www/mainMsgCheck.blp',
+			type: 'post',
+			dataType: 'json',
+			success: function(data){
+				if(data.result == 'OK'){
+					//	처리 성공
+					$('#msgWin').remove();
+				}
+			},
+			error: function(){
+				alert('### 통신에러 ###');
+			}
+		});
 	});
 });

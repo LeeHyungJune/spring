@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Gitrhd Project</title>
+<title>Jennie Project Main</title>
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/base.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/www/js/main.js"></script>
-<style type="text/css">
+<style>
 	h5, span {
 		height: 20px;
 		line-height: 30%;
@@ -28,6 +28,10 @@
 	.mt10 {
 		margin-top: 30px;
 	}
+	
+	#msgWin {
+		display: block;
+	}
 </style>
 <script type="text/javascript">
 	var sessionId = '${SID}';
@@ -37,8 +41,9 @@
 	<form method="POST" action="" id="frm" name="frm">
 		<input type="hidden" id="id" name="id" value="${SID}">
 	</form>
+	
 	<div class="w3-content w3-center mw700">
-		<h1 class="w3-teal w3-padding" style="margin-bottom: 5px;">Githrd Project</h1>
+		<h1 class="w3-blue w3-padding w3-card-4" style="margin-bottom: 5px;">GITHRD Project</h1>
 		<div class="w3-col">
 <c:if test="${empty SID}">
 				<div class="w3-col w3-border-bottom pdb3">
@@ -48,17 +53,12 @@
 </c:if>
 				<div class="w3-col" id="btnfr">
 <c:if test="${not empty SID}">
-					<script type="text/javascript">
-						alert('${SID} 님이 로그인했습니다.');
-					</script>
-
-					<div class="w3-col w3-border-bottom pdb10">
+					<div class="w3-col w3-border-bottom pdb3">
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-right mt0" id="obtn">LogOut</span>
-						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-left mt0" id="ibtn">회원정보</span>
+						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-left mt0" id="ibtn">내정보 보기</span>
 					</div>
 </c:if>
 
-					
 					<div class="w3-col mt10">
 						<div class="w3-col m3 pdh10">
 							<h5 class="w3-col w3-button w3-purple w3-hover-amber" id="mlbtn">회원목록</h5>
@@ -84,5 +84,19 @@
 				</div>
 		</div>
 	</div>
+
+<c:if test="${(not empty SID) and (MSG_CHECK eq 'OK')}">
+	<div id="msgWin" class="w3-modal">
+	    <div class="w3-modal-content w3-animate-top w3-card-4">
+			<header class="w3-container w3-blue"> 
+		        <span class="w3-button w3-display-topright" id="msgClose">&times;</span>
+		        <h2>알림 메세지</h2>
+			</header>
+	    	<div class="w3-container">
+	        	<h3 class="w3-center w3-margin-top w3-margin-bottom" id="msg">${SID} 님 로그인 하셨습니다.</h3>
+	    	</div>
+	    </div>
+ 	</div>
+</c:if>
 </body>
 </html>

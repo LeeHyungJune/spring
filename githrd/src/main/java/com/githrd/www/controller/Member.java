@@ -10,59 +10,62 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.githrd.www.dao.MemberDao;
-import com.githrd.www.vo.MemberVO;
+import com.githrd.www.dao.*;
+import com.githrd.www.vo.*;
 
 @Controller
 @RequestMapping("/member")
 public class Member {
 	@Autowired
 	MemberDao mDao;
+	@Autowired
+	GBoardDao gDao;
 	
 	@RequestMapping("/login.blp")
-	public ModelAndView loginForm(ModelAndView mv, HttpSession session, HttpServletResponse resp) {
-		mv.setViewName("/member/login");
+	public ModelAndView loginForm(ModelAndView mv, HttpSession session) {
+		mv.setViewName("member/login");
 		return mv;
 	}
 	/*
-		 public String loginForm(HttpSession session, HttpServletResponse resp) {
-			
-			return "member/login";
-		} 
-	 
-	 */
+	public String loginForm(HttpSession session, HttpServletResponse resp) {
+		
+		return "member/login";
+	}
+	*/
 	
-	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id","pw"})
+	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw"})
 	public ModelAndView loginProc(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
-		/*
-		System.out.println("### 일반 사용자");
-		System.out.println("********* id : " + id);
-		System.out.println("********* pw : " + pw);
-		System.out.println("********* mVO.id : " + mVO.getId());
-		System.out.println("********* mVO.pw : " + mVO.getPw());
-		*/
+//		System.out.println("### 일반 사용자");
+//		System.out.println("************** id : " + id);
+//		System.out.println("************** pw : " + pw);
+//		System.out.println("************** mVO.id : " + mVO.getId());
+//		System.out.println("************** mVO.pw : " + mVO.getPw());
 		
 		int cnt = mDao.getLogin(mVO);
-		
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
-			rv.setUrl("/www/main.blp");
+			session.setAttribute("MSG_CHECK", "OK");
+			int count = gDao.getMyCount(mVO.getId());
+			session.setAttribute("CNT", count);
+			if(count == 0) {
+				rv.setUrl("/www/gBoard/gBoardList.blp");
+			} else {
+				rv.setUrl("/www/main.blp");
+			}
 		} else {
 			rv.setUrl("/www/member/login.blp");
 		}
 		mv.setView(rv);
+		
 		return mv;
 	}
-	
 	/*
-	  	public ModelAndView loginProc(String id, String pw, MemberVO mVO, HttpSession session, ModelAndView mv) {
-		
-		System.out.println("### 일반 사용자");
-		System.out.println("********* id : " + id);
-		System.out.println("********* pw : " + pw);
-		System.out.println("********* mVO.id : " + mVO.getId());
-		System.out.println("********* mVO.pw : " + mVO.getPw());
-		
+	public ModelAndView loginProc(String id, String pw, MemberVO mVO, HttpSession session, ModelAndView mv) {
+//		System.out.println("### 일반 사용자");
+//		System.out.println("************** id : " + id);
+//		System.out.println("************** pw : " + pw);
+//		System.out.println("************** mVO.id : " + mVO.getId());
+//		System.out.println("************** mVO.pw : " + mVO.getPw());
 		
 		int cnt = mDao.getLogin(mVO);
 		String view = "";
@@ -74,16 +77,14 @@ public class Member {
 		}
 		mv.setViewName(view);
 		return mv;
-		}
-	 
-	 */
+	}
+	*/
 	
 	@RequestMapping(path="/loginProc.blp", params="id=admin")
 	public ModelAndView adminLogin(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
-		System.out.println("### 관리자");
+//		System.out.println("### 관리자");
 		
 		int cnt = mDao.getLogin(mVO);
-		
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
 			rv.setUrl("/www/main.blp");
@@ -94,7 +95,7 @@ public class Member {
 		return mv;
 	}
 	/*
-	 	public ModelAndView adminLogin(MemberVO mVO, HttpSession session, ModelAndView mv) {
+	public ModelAndView adminLogin(MemberVO mVO, HttpSession session, ModelAndView mv) {
 		System.out.println("### 관리자");
 		
 		int cnt = mDao.getLogin(mVO);
@@ -107,8 +108,8 @@ public class Member {
 		}
 		mv.setViewName(view);
 		return mv;
-		}
-	 */
+	}
+	*/
 	
 	@RequestMapping("/logout.blp")
 	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv) {
@@ -135,35 +136,42 @@ public class Member {
 		return map;
 	}
 	
-	@RequestMapping(path="/join.blp")
+	/**
+	 * 회원 가입 폼보기 요청
+	 */
+	@RequestMapping("/join.blp")
 	public ModelAndView joinForm(ModelAndView mv, RedirectView rv) {
+		
 		List<MemberVO> list = mDao.getAvtList();
 		
-		//	데이터 심고
+		// 데이터 심고
 		mv.addObject("LIST", list);
-		mv.setViewName("/member/join");
-		
+		mv.setViewName("member/join");
 		return mv;
 	}
 	/*
-	 	public String joinForm() {
-		String view = "/member/join";
-		return view;
-	}
-	 */
-	
-	@RequestMapping(path="/joinProc.blp")
-	public ModelAndView joinProc(MemberVO mVO, HttpSession session, 
-								ModelAndView mv, RedirectView rv) {
+	public void joinForm() {
+		String view = "member/join";
 		
+//		return view;
+	}
+	*/
+	
+	@RequestMapping(path="/joinProc.blp", method=RequestMethod.POST)
+	public ModelAndView joinProc(MemberVO mVO, ModelAndView mv, 
+									RedirectView rv, HttpSession session) {
+//		System.out.println("########### before mno : " + mVO.getMno());
 		int cnt = mDao.addMember(mVO);
+//		System.out.println("########### after mno : " + mVO.getMno());
+		
 		if(cnt == 1) {
-			//	성공한 경우
+			// 성공한 경우
 			session.setAttribute("SID", mVO.getId());
 			rv.setUrl("/www/");
 		} else {
 			rv.setUrl("/www/member/join.blp");
 		}
+		
 		mv.setView(rv);
 		
 		return mv;
@@ -171,13 +179,23 @@ public class Member {
 	
 	@RequestMapping("/myInfo.blp")
 	public ModelAndView myInfo(ModelAndView mv, String id) {
-		//	데이터 가져오기
+		// 데이터 가져오고
 		MemberVO mVO = mDao.getIdInfo(id);
+		// 뷰에 데이터 심고
+		mv.addObject("DATA" , mVO);
+		// 뷰 정하고
+		mv.setViewName("member/memberInfo");
 		
-		//	뷰에 데이터 심기
-		mv.addObject("DATA", mVO);
-		
-		//	뷰 정하고
+		return mv;
+	}
+	
+	@RequestMapping("/memberInfo.blp")
+	public ModelAndView memberInfo(ModelAndView mv, int mno) {
+		// 데이터 가져오고
+		MemberVO mVO = mDao.getMnoInfo(mno);
+		// 뷰에 데이터 심고
+		mv.addObject("DATA" , mVO);
+		// 뷰 정하고
 		mv.setViewName("member/memberInfo");
 		
 		return mv;
@@ -185,38 +203,25 @@ public class Member {
 	
 	@RequestMapping("/memberList.blp")
 	public ModelAndView memberList(ModelAndView mv) {
-		
-		List<MemberVO> list = mDao.memberList();
-		
+		// 데이터 가져오고...
+		List<MemberVO> list = mDao.membList();
+		// 데이터 심고
 		mv.addObject("LIST", list);
-		
-		mv.setViewName("/member/memberList");
-		
-		return mv;
-	}
-	
-	@RequestMapping("/memberInfo.blp")
-	public ModelAndView memberInfo(ModelAndView mv, int mno) {
-		//	데이터 가져오기
-		MemberVO mVO = mDao.getMnoInfo(mno);
-		
-		//	뷰에 데이터 심기
-		mv.addObject("DATA", mVO);
-		
-		//	뷰 정하고
-		mv.setViewName("member/memberInfo");
+		// 뷰 설정하고
+		mv.setViewName("member/memberList");
 		
 		return mv;
 	}
 	
 	@RequestMapping("/delMember.blp")
 	public ModelAndView delMember(ModelAndView mv, String id, RedirectView rv, HttpSession session) {
-		String sid = (String)session.getAttribute("SID");
+		String sid = (String) session.getAttribute("SID");
 		if(sid == null) {
 			rv.setUrl("/www/member/login.blp");
 			mv.setView(rv);
 			return mv;
 		}
+		
 		if(!id.equals(sid)) {
 			rv.setUrl("/www/member/myInfo.blp");
 			mv.setView(rv);
@@ -224,32 +229,59 @@ public class Member {
 		}
 		
 		int cnt = mDao.delMember(id);
+		
 		if(cnt == 1) {
-			//	세션에 기억시켜둔 데이터를 삭제하고
+			// 세션에 기억시켜둔 데이터를 삭제하고
 			session.removeAttribute("SID");
 			rv.setUrl("/www/");
 		} else {
 			rv.setUrl("/www/member/myInfo.blp");
 		}
+		
 		mv.setView(rv);
 		return mv;
 	}
 	
+	// 회원정보 수정 폼보기 요청 처리함수
 	@RequestMapping("/myInfoEdit.blp")
-	public ModelAndView myInfoEdit(ModelAndView mv, String id) {
-		//		데이터 가져오기
-		MemberVO mVO = mDao.getMyEditInfo(id);
+	public ModelAndView myInfoEdit(ModelAndView mv, String id, HttpSession session, RedirectView rv) {
+		String sid = (String) session.getAttribute("SID");
+		if(sid == null) {
+			rv.setUrl("/www/member/login.blp");
+			mv.setView(rv);
+			return mv;
+		}
 		
-		List<MemberVO> list = mDao.genAvtList(id);
+		if(!id.equals(sid)) {
+			rv.setUrl("/www/main.blp");
+			mv.setView(rv);
+			return mv;
+		}
 		
-		//	뷰에 데이터 심기
+		// 데이터베이스 조회
+		MemberVO mVO = mDao.getIdInfo(id);
+		List<MemberVO> list = mDao.getAvtList(id);
+		
 		mv.addObject("DATA", mVO);
-		
 		mv.addObject("LIST", list);
 		
-		//	뷰 정하고
+		// 뷰 정하고
 		mv.setViewName("member/editInfo");
+		return mv;
+	}
+	
+	// 내정보 수정 처리요청 처리 함수
+	@RequestMapping("/infoEditProc.blp")
+	public ModelAndView infoEditProc(ModelAndView mv, MemberVO mVO, RedirectView rv) {
+		int cnt = mDao.editMyInfo(mVO);
+		String view = "member/redirect";
+		if(cnt == 0) {
+			mv.addObject("VIEW", "/www/member/myInfoEdit.blp");
+		} else {
+			mv.addObject("VIEW", "/www/member/myInfo.blp");
+		}
 		
+		mv.setViewName(view);
 		return mv;
 	}
 }

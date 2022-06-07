@@ -93,7 +93,7 @@
 				<label class="w3-col s3 w3-right-align clrgrey ft14 mgb10">아 바 타 : </label>
 				<div class="w3-col s8 mgl10 mgb10 w3-center">
 						<div class="avtboxfr w3-center w3-margin-top" id="avt">
-		<c:forEach var="data" items="${LIST}">
+<c:forEach var="data" items="${LIST}">
 						 	<div class="avtbox">
 						 		<label for="avt${data.ano}">
 						 			<img src="/www/img/avatar/${data.savename}" class="w3-col avtimg">
@@ -105,7 +105,7 @@
 						 		<input type="radio" name="ano" id="avt${data.ano}" value="${data.ano}">
 				</c:if>
 						 	</div>
-		</c:forEach>
+</c:forEach>
 						</div>
 				</div>
 			</div>
