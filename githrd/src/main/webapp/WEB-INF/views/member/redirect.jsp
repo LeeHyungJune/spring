@@ -7,17 +7,17 @@
 <title>Member Redirect View</title>
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$('#frm').submit();
-});
+	$(document).ready(function(){
+		$('#frm').submit();
+	});
 </script>
 </head>
 <body>
-	<form method="POST" action="" id="frm" name="frm">
-<c:if test="${not empty NOWPAGE }">
+	<form method="POST" action="${VIEW}" id="frm" name="frm">
+<c:if test="${not empty NOWPAGE}">
 		<input type="hidden" name="nowPage" value="${NOWPAGE}">
 </c:if>
-<c:if test="${not empty SID }">
+<c:if test="${not empty SID}">
 		<input type="hidden" name="id" value="${SID}">
 </c:if>
 	</form>

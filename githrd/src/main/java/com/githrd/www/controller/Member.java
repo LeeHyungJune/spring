@@ -47,6 +47,7 @@ public class Member {
 			session.setAttribute("MSG_CHECK", "OK");
 			int count = gDao.getMyCount(mVO.getId());
 			session.setAttribute("CNT", count);
+			
 			if(count == 0) {
 				rv.setUrl("/www/gBoard/gBoardList.blp");
 			} else {
@@ -112,10 +113,11 @@ public class Member {
 	*/
 	
 	@RequestMapping("/logout.blp")
-	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv, String vw, String nowPage) {
+	public ModelAndView logout(ModelAndView mv, HttpSession session, String vw, String nowPage) {
 		session.removeAttribute("SID");
+		
 		if(vw == null) {
-			vw ="/www/";
+			vw = "/www/";
 		}
 		
 		if(nowPage != null) {
@@ -123,7 +125,6 @@ public class Member {
 		}
 		
 		mv.addObject("VIEW", vw);
-		
 		
 		mv.setViewName("member/redirect");
 		return mv;
@@ -177,7 +178,15 @@ public class Member {
 		if(cnt == 1) {
 			// 성공한 경우
 			session.setAttribute("SID", mVO.getId());
-			rv.setUrl("/www/");
+			session.setAttribute("MSG_CHECK", "OK");
+			int count = gDao.getMyCount(mVO.getId());
+			session.setAttribute("CNT", count);
+			
+			if(count == 0) {
+				rv.setUrl("/www/gBoard/gBoardList.blp");
+			} else {
+				rv.setUrl("/www/main.blp");
+			}
 		} else {
 			rv.setUrl("/www/member/join.blp");
 		}

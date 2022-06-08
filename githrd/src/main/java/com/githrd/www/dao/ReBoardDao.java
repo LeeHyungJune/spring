@@ -21,7 +21,7 @@ public class ReBoardDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-//	게시글 리스트 조회 전담 처리함수
+	//	게시글 리스트 조회 전담 처리함수
 	public List<BoardVO> getList(PageUtil page) {
 		return sqlSession.selectList("rSQL.getList", page);
 	}
@@ -29,5 +29,15 @@ public class ReBoardDao {
 	//	총 게시글 수 조회 전담 처리함수
 	public int getTotal() {
 		return sqlSession.selectOne("rSQL.getTotal");
+	}
+	
+	//	댓글 쓰기 필요 정보 조회 전담 처리함수
+	public BoardVO getWriterInfo(String id) {
+		return sqlSession.selectOne("rSQL.getWriterInfo", id);
+	}
+	
+	//	게시글 추가 데이터베이스 작업 전담 처리함수(댓글 포함)
+	public int addReBoard(BoardVO bVO) {
+		return sqlSession.insert("rSQL.addReBoard", bVO);
 	}
 }

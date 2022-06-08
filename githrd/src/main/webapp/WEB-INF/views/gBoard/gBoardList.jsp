@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/www/js/gboard.js"></script>
+<script type="text/javascript" src="/www/js/gBoard/gboard.js"></script>
 <style type="text/css">
 	.w3-button {
 		padding: 1px 16px;
@@ -86,7 +86,7 @@
 	
 	<!-- 데이터 전송용 form 태그 -->
 	<form method="POST" action="/www/gBoard/gBoardList.blp" id="frm" name="frm">
-	<input type="hidden" id="view" name="vw" >
+		<input type="hidden" id="view" name="vw" >
 		<input type="hidden" id="nowPage" name="nowPage" value="${PAGE.nowPage}">
 	</form>
 </body>

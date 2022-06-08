@@ -40,8 +40,40 @@
 		            ) 
 		    )
 		WHERE
-		   	rno BETWEEN #{startCont} AND #{endCont}
+		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
 	
+	<!-- 댓글쓰기 폼 데이터 조회 -->
+	<select id="getWriterInfo" resultType="bVO" parameterType="String">
+		SELECT
+			mno, savename avatar, id
+		FROM
+			member, avatar
+		WHERE
+			avt = ano
+			AND id = #{id}
+	</select>
+	
+	<!-- 게시글 등록 질의 명령 -->
+	<insert id="addReBoard" parameterType="bVO">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(rbno) +1, 100001)
+			FROM
+				reboard
+		</selectKey>
+		INSERT INTO
+			reboard(rbno, rbmno, body
+					<if test="upno neq 0">
+						,	upno
+					</if>
+			)
+		VALUES(
+			#{bno}, #{mno}, #{body}
+			<if test="upno neq 0">
+						,	#{upno}
+					</if>
+		)
+	</insert>
 	
 </mapper>

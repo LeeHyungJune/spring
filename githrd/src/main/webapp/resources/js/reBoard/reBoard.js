@@ -1,48 +1,59 @@
 $(document).ready(function(){
-	/*
+	
 	$('#jbtn').click(function(){
-		$(location).attr('href','/whistle/member/join.blp');
+		$(location).attr('href','/www/member/join.blp');
 	});
 	
 	$('#lbtn').click(function(){
-		$(location).attr('href','/whistle/member/login.blp');
+		$(location).attr('href','/www/member/login.blp');
 	});
 	
 	$('#obtn').click(function(){
-		$(location).attr('href','/whistle/member/logOut.blp');
+		$('#frm').attr('action', '/www/member/logout.blp');
+		$('#view').val('/www/reBoard/reBoardList.blp');
+		$('#bno').prop('disabled', true);
+		$('#frm').submit();
 	});
 	
 	$('#hbtn').click(function(){
-		$(location).attr('href','/whistle/');
+		$(location).attr('href','/www/');
 	});
-	*/
 	
+	$('#wbtn').click(function(){
+		$('#bno').prop('disabled', true);
+		$('#view').prop('disabled', true);
+		$('#frm').attr('action', '/www/reBoard/reBoardWrite.blp');
+		$('#frm').submit();
+	});
+	
+	/*
 	$('.menubtn').click(function(){
 		var bid = $(this).attr('id');
 		
-		var addr = '/whistle/';
+		var addr = '/www/';
 		
 		switch(bid) {
 			case 'hbtn':
 			//	기본 주소를 사용
 			break;
 			case 'lbtn':
-			addr = '/whistle/member/login.blp';
+			addr = '/www/member/login.blp';
 			break;
 			case 'jbtn':
-			addr = '/whistle/member/join.blp';
+			addr = '/www/member/join.blp';
 			break;
 			case 'obtn':
-			addr = '/whistle/member/logOut.blp';
+			addr = '/www/member/logout.blp';
 			break;
 			case 'wbtn':
-			$('#frm').attr('action','/whistle/reboard/reboardWrite.blp');
+			$('#frm').attr('action','/www/reBoard/reBoardWrite.blp');
 			$('#frm').submit();
 			return;
 		}
 		
 		$(location).attr('href', addr);
 	});
+	*/
 	
 	$('.pbtn').click(function(){
 		//	페이지 번호 읽기
@@ -58,11 +69,11 @@ $(document).ready(function(){
 	
 	$('#listbtn').click(function(){
 		//	form 태그의 액션 속성값 변경
-		$('#frm').attr('action','/whistle/reboard/reboardList.blp');
+		$('#frm').attr('action','/www/reBoard/reBoardList.blp');
 		//	사용하지 않는 태그 비활성화
 		$('#mno').prop('disabled', true);
 		$('#body').prop('disabled', true);
-		$('frm').submit();
+		$('#frm').submit();
 	});
 	
 	$('#rbtn').click(function(){
@@ -99,11 +110,11 @@ $(document).ready(function(){
 		$('#bno').val(sno);
 		
 		if(btxt == '댓글') {
-			$('#frm').attr('action','/whistle/reboard/reboardComment.blp');
+			$('#frm').attr('action','/www/reBoard/reBoardComment.blp');
 		} else if(btxt == '삭제'){
-			$('#frm').attr('action', '/whistle/reboard/reboardDel.blp');
+			$('#frm').attr('action', '/www/reBoard/reBoardDel.blp');
 		} else if(btxt == '수정') {
-			$('#frm').attr('action', '/whistle/reboard/reboardEdit.blp');
+			$('#frm').attr('action', '/www/reBoard/reBoardEdit.blp');
 		}
 		$('#frm').submit();
 		

@@ -153,4 +153,19 @@
 뷰			:	/WEB-INF/views/reBoard/reBoardList.jsp
 
 --------------------------------------------------------------------------------------
+#	댓글 게시판 글쓰기 폼보기 요청
+요청내용	:	/www/reBoard/reBoardWrite.blp
+파라미터	:	[nowPage], id
+컨트롤러	:	com.githrd.www.controller.ReBoard
+처리함수	:	reBoardWrite()
+뷰			:	/WEB-INF/views/reBoard/reBoardWrite.jsp
 
+--------------------------------------------------------------------------------------
+#	댓글 쓰기 처리 요청
+요청내용	:	/www/reBoard/writeProc.blp
+파라미터	:	[nowPage], body, mno
+컨트롤러	:	com.githrd.www.controller.ReBoard
+처리함수	:	writeProc()
+뷰			:	/WEB-INF/views/reBoard/redirect.jsp
+
+--------------------------------------------------------------------------------------

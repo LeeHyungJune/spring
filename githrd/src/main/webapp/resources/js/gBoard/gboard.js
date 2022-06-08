@@ -12,10 +12,10 @@ $(document).ready(function(){
 	});	
 	
 	$('#obtn').click(function(){
-		$('#frm').attr('href', '/www/member/logout.blp');
+		$('#frm').attr('action', '/www/member/logout.blp');
 		$('#view').val('/www/gBoard/gBoardList.blp');
 		$('#frm').submit();
-	});	
+	});
 	
 	$('.pbtn').click(function(){
 		//	데이터 읽어오고

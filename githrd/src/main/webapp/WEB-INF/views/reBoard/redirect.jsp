@@ -24,6 +24,9 @@
 <c:if test="${not empty param.bno}">
 		<input type="hidden" name="bno" value="${param.bno}">
 </c:if>
+<c:if test="${not empty param.id}">
+		<input type="hidden" name="id" value="${param.id}">
+</c:if>
 	</form>
 </c:if>
 </body>

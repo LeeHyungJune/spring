@@ -24,16 +24,12 @@ public class GuestBoard {
 	public ModelAndView gBOardList(ModelAndView mv, PageUtil page, HttpSession session) {
 //		System.out.println("************** page.nowPage: " + page.getNowPage());
 //		System.out.println("************** page.pageRow: " + page.getPageRow());
-		System.out.println("************** page.nowPage: " + page.getNowPage());
-		System.out.println("************** page.pageRow: " + page.getPageRow());
-		System.out.println("************** page.endCont: " + page.getEndCont());
 		
 		String sid = (String) session.getAttribute("SID");
 		if(sid != null) {
 			int cnt = gDao.getMyCount(sid);
 			mv.addObject("CNT", cnt);
 		}
-		
 		
 		//	총 게시글 수 조회
 		int total = gDao.getTotal();
@@ -74,7 +70,7 @@ public class GuestBoard {
 			mv.addObject("NOWPAGE", nowPage);
 		} 
 		mv.addObject("VIEW", view);
-		mv.setViewName("/gBoard/redirect");
+		mv.setViewName("gBoard/redirect");
 		return mv;
 	}
 }
