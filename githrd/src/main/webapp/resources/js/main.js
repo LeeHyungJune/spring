@@ -27,7 +27,7 @@ $(document).ready(function(){
 	});
 	
 	$('#rbtn').click(function(){
-		$(location).attr('href','/www/reboard/reboardList.blp');
+		$(location).attr('href','/www/reBoard/reBoardList.blp');
 	});
 	
 	$('#fbtn').click(function(){

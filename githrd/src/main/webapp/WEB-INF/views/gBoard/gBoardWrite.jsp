@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BlackPink 방명록</title>
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/user.css">
-<script type="text/javascript" src="/whistle/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/whistle/resources/js/whistle/gboardWrite.js?ver=3"></script>
+<title>BlackPink 방명록 글쓰기</title>
+<link rel="stylesheet" type="text/css" href="/www/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/www/css/user.css">
+<script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/www/js/gboard.js?ver=3"></script>
 <style type="text/css">
 	.w3-button{
 		padding: 1px 16px;
@@ -34,11 +34,11 @@
 			</nav>
 		</header>
 		
-		<form method="post" action="/whistle/guestBoard/gBoardWriteProc.blp" name="frm" id="frm" 
+		<form method="post" action="/www/gBoard/gBoardWriteProc.blp" name="frm" id="frm" 
 				class="w3-col w3-round-large w3-card-4 w3-margin-bottom w3-padding mgb20">
 				<input type="hidden" name="mno" value="${DATA.mno}">
 				<div class="w3-col box120 pdAll10 w3-border-right w3-border-deep-orange">
-					<img src="/whistle/resources/img/avatar/${DATA.avatar}" class="inblock avtBox100 w3-border w3-border-grey">
+					<img src="/www/img/avatar/${DATA.avatar}" class="inblock avtBox100 w3-border w3-border-grey">
 				</div>
 				<div class="w3-rest w3-padding">
 					<div class="w3-col w3-border-bottom ">
@@ -53,9 +53,9 @@
 			<input type="hidden" id="nowPage" name="nowPage" value="${param.nowPage}">
 		</form>
 		<div class="w3-col w3-card-4">
-			<div class="w3-third w3-button w3-green w3-hover-lime" id="lbtn">list</div>
+			<div class="w3-third w3-button w3-green w3-hover-lime" id="listbtn">list</div>
 			<div class="w3-third w3-button w3-amber w3-hover-yellow" id="rbtn">reset</div>
-			<div class="w3-third w3-button w3-deep-orange w3-hover-aqua" id="wbtn">글등록</div>
+			<div class="w3-third w3-button w3-deep-orange w3-hover-aqua" id="addbtn">글등록</div>
 		</div>
 	</div>
 </body>

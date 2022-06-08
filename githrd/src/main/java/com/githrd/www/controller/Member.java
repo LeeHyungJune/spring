@@ -112,10 +112,20 @@ public class Member {
 	*/
 	
 	@RequestMapping("/logout.blp")
-	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv, String vw, String nowPage) {
 		session.removeAttribute("SID");
-		rv.setUrl("/www/");
-		mv.setView(rv);
+		if(vw == null) {
+			vw ="/www/";
+		}
+		
+		if(nowPage != null) {
+			mv.addObject("NOWPAGE", nowPage);
+		}
+		
+		mv.addObject("VIEW", vw);
+		
+		
+		mv.setViewName("member/redirect");
 		return mv;
 	}
 	
