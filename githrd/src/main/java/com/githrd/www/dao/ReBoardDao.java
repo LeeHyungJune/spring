@@ -31,7 +31,7 @@ public class ReBoardDao {
 		return sqlSession.selectOne("rSQL.getTotal");
 	}
 	
-	//	댓글 쓰기 필요 정보 조회 전담 처리함수
+	//	댓글게시판 글쓰기 필요 정보 조회 전담 처리함수
 	public BoardVO getWriterInfo(String id) {
 		return sqlSession.selectOne("rSQL.getWriterInfo", id);
 	}
@@ -39,5 +39,25 @@ public class ReBoardDao {
 	//	게시글 추가 데이터베이스 작업 전담 처리함수(댓글 포함)
 	public int addReBoard(BoardVO bVO) {
 		return sqlSession.insert("rSQL.addReBoard", bVO);
+	}
+	
+	//	댓글 폼 데이터 조회 전담 처리함수
+	public BoardVO getCommentData(BoardVO bVO) {
+		return sqlSession.selectOne("rSQL.commentData", bVO);
+	}
+	
+	//	게시글 수정데이터 조회 전담 처리함수
+	public BoardVO getEditData(BoardVO bVO) {
+		return sqlSession.selectOne("rSQL.editData", bVO);
+	}
+	
+	//	게시글 수정 등록 전담 처리함수
+	public int editReBoard(BoardVO bVO) {
+		return sqlSession.update("rSQL.editReBoard", bVO);
+	}
+	
+	//	게시글 삭제 전담 처리함수
+	public int delReBoard(BoardVO bVO) {
+		return sqlSession.update("rSQL.delReBoard", bVO);
 	}
 }

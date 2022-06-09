@@ -1,11 +1,12 @@
 $(document).ready(function(){
 	
 	$('#jbtn').click(function(){
-		$(location).attr('href','/www/member/join.blp');
+		$(document.frm).attr('action','/www/member/join.blp');
+		$('#frm').submit();
 	});
 	
 	$('#lbtn').click(function(){
-		$(location).attr('href','/www/member/login.blp');
+		$(location).attr('href','/www/member/login.blp?vw=/www/reBoard/reBoardList.blp&nowPage=' + $('#nowPage').val());
 	});
 	
 	$('#obtn').click(function(){
@@ -96,14 +97,15 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
+	/*
 	$('.w3-button.w70').click(function(){
 		//	어떤 버튼이 클릭이 되었는지 알아내고
 		var btxt = $(this).html();
-		/*
+		
 		if(btxt.eqauls('댓글')) {
 			
 		}
-		*/
+		
 		//	글번호 읽어오기
 		var sno = $(this).parent().attr('id');
 		
@@ -119,41 +121,54 @@ $(document).ready(function(){
 		$('#frm').submit();
 		
 	});
+	*/
+	
+	$('.comment').click(function(){
+		
+		var sno = $(this).parent().attr('id');
+		$('#bno').val(sno);
+		
+		$('#frm').attr('action', '/www/reBoard/commentWrite.blp');
+		$('#frm').submit();
+	});
+	
+	
+	$('.editbtn').click(function(){
+		var sno = $(this).parent().attr('id');
+		$('#bno').val(sno);
+		
+		$('#frm').attr('action','/www/reBoard/reBoardEdit.blp');
+		$('#frm').submit();
+	});
+	
+	$('.delbtn').click(function(){
+		var sno = $(this).parent().attr('id');
+		$('#bno').val(sno);
+		
+		$('#frm').attr('action','/www/reBoard/delReBoard.blp');
+		$('#frm').submit();
+	});
 	
 	//	댓글 등록 버튼 클릭 이벤트
 	$('#cmtbtn').click(function(){
 		var btxt = $('#body').val();
-		btxt = btxt.trim();
 		
 		if(!btxt) {
-			$('#body').focus();
 			return;
 		}
 		
-		if(btxt.length > 200) {
-			btxt = btxt.substring(0,200);
-			$('#body').val(btxt);
-			alert('코멘트 의 글자수는 200자를 초과할 수 없습니다.');
-			return;
-		}
-		
+		$('#frm').attr('action', '/www/reBoard/commentProc.blp');
 		$('#frm').submit();
 		
 	});
 	
 	$('#editbtn').click(function(){
-		var btxt = $('#body').val();
+		
 		var otxt = $('#obody').val();
+		var btxt = $('#body').val();
 		
 		if(btxt == otxt) {
 			alert('수정하려는 내용과 원 내용이 동일합니다.');
-			return;
-		}
-		
-		if(btxt.length > 200) {
-			btxt = btxt.substring(0,200);
-			$('#body').val(btxt);
-			alert('코멘트 의 글자수는 200자를 초과할 수 없습니다.');
 			return;
 		}
 		

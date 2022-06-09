@@ -7,6 +7,6 @@ $(document).ready(function(){
 	
 	//	홈버튼 클릭 이벤트
 	$('#hbtn').click(function(){
-		$(location).attr('href','/whistle/member/main.blp');
+		$(location).attr('href','/www/');
 	});
 });

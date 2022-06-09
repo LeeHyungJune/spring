@@ -100,9 +100,16 @@ public class BoardVO {
 	}
 	@Override
 	public String toString() {
-		return "BoardVO [mno=" + mno + ", bno=" + bno + ", upno=" + upno + ", rno=" + rno + ", ano=" + ano + ", cnt="
-				+ cnt + ", step=" + step + ", id=" + id + ", title=" + title + ", body=" + body + ", sdate=" + sdate
-				+ ", avatar=" + avatar + ", wdate=" + wdate + "]";
+		return "BoardVO [mno=" + mno + ", bno=" + bno + ", upno=" + upno + ", rno=" + rno + ", ano=" + ano + ", click="
+				+ click + ", cnt=" + cnt + ", step=" + step + ", id=" + id + ", title=" + title + ", body=" + body
+				+ ", sdate=" + sdate + ", avatar=" + avatar + ", wdate=" + wdate + ", getMno()=" + getMno()
+				+ ", getBno()=" + getBno() + ", getUpno()=" + getUpno() + ", getStep()=" + getStep() + ", getRno()="
+				+ getRno() + ", getAno()=" + getAno() + ", getClick()=" + getClick() + ", getCnt()=" + getCnt()
+				+ ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getBody()=" + getBody() + ", getSdate()="
+				+ getSdate() + ", getAvatar()=" + getAvatar() + ", getWdate()=" + getWdate() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+	
+	
 	
 }

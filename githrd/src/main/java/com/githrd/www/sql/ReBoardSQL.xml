@@ -43,7 +43,7 @@
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
 	
-	<!-- 댓글쓰기 폼 데이터 조회 -->
+	<!-- 게시글쓰기 폼 데이터 조회 -->
 	<select id="getWriterInfo" resultType="bVO" parameterType="String">
 		SELECT
 			mno, savename avatar, id
@@ -76,4 +76,59 @@
 		)
 	</insert>
 	
+	<!-- 댓글 작성 데이터 조회 질의 명령 -->
+	<select id="commentData" resultType="bVO" parameterType="bVO">
+		SELECT
+		    mno, savename avatar, rbno upno, body
+		FROM
+		    member, avatar, reboard
+		WHERE
+		    avt = ano
+		    AND id = #{id}
+		    AND rbno = #{bno}
+	</select>
+	
+	<!-- 게시글 수정 데이터 조회 질의명령 -->
+	<select id="editData" resultType="bVO" parameterType="bVO">
+		SELECT
+		   id,  mno, savename avatar, rbno bno, body, wdate
+		FROM
+		    member m, avatar a, reboard r
+		WHERE
+		    avt = ano
+		    AND mno = rbmno
+		    AND rbno = #{bno}
+	</select>
+	
+	<!-- 게시글 수정 질의명령 -->
+	<update id="editReBoard" parameterType="bVO">
+		UPDATE
+			reboard
+		SET
+			body = #{body},
+			wdate = sysdate
+		WHERE
+			rbno = #{bno}
+	</update>
+	
+	<!-- 게시글 삭제 질의명령 -->
+	<update id="delReBoard" parameterType="bVO">
+		UPDATE
+		    reboard
+		SET
+		    isshow = 'N'
+		WHERE
+		    rbno IN (
+		                SELECT
+		                    rbno
+		                FROM
+		                    reboard
+		                WHERE
+		                    isshow = 'Y'
+		                START WITH
+		                    rbno = #{bno}
+		                CONNECT BY
+		                    PRIOR rbno = upno
+		            )   
+	</update>
 </mapper>

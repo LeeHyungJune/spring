@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
@@ -91,4 +92,94 @@ public class Reboard {
 		return mv;
 	}
 	
+	//	게시글 댓글 쓰기 폼보기
+	@RequestMapping("/commentWrite.blp")
+	public ModelAndView commentWrite(ModelAndView mv, BoardVO bVO, String nowPage, String vw) {
+		
+		bVO = rDao.getCommentData(bVO);
+		
+		//	데이터 세팅
+		mv.addObject("DATA", bVO);
+		//	뷰 부르기
+		mv.setViewName("/reBoard/reBoardComment");
+		
+		return mv;
+	}
+	
+	//	댓글 처리 요청
+	@RequestMapping("/commentProc.blp")
+	public ModelAndView commentProc(ModelAndView mv, BoardVO bVO, String nowPage, String vw) {
+		
+		int result = rDao.addReBoard(bVO);
+		
+		if(result == 1) {
+			//	댓글 등록 성공
+			mv.addObject("VIEW", "/www/reBoard/reBoardList.blp");
+		} else {
+			//	실패
+			mv.addObject("VIEW", "/www/reBoard/commentWrite.blp");
+		}
+		mv.addObject("NOWPAGE", nowPage);
+		
+		
+		//	뷰 부르고
+		mv.setViewName("reBoard/redirect");
+		
+		return mv;
+	}
+	
+	/**
+	 * 게시글 수정 폼보기 요청 처리함수
+	 */
+	@RequestMapping("/reBoardEdit.blp")
+	public ModelAndView reBoardEdit(ModelAndView mv, String vw, BoardVO bVO, String nowPage) {
+		bVO = rDao.getEditData(bVO);
+		
+		mv.addObject("DATA", bVO);
+		mv.setViewName("reBoard/reBoardEdit");
+		
+		
+		return mv;
+	}
+	
+	/**
+	 * 게시글 수정 요청 처리함수
+	 */
+	@RequestMapping("/editProc.blp")
+	public ModelAndView editProc(ModelAndView mv, BoardVO bVO, String nowPage, String vw) {
+		int result = rDao.editReBoard(bVO);
+		
+		if(result == 1) {
+			//	성공
+			mv.addObject("VIEW","/www/reBoard/reBoardList.blp");
+		} else {
+			//	실패
+			mv.addObject("VIEW","/www/reBoard/reBoardEdit.blp");
+		}
+		
+		//	데이터 심고
+		mv.addObject("NOWPAGE", nowPage);
+		
+		//	뷰 부르고
+		mv.setViewName("/reBoard/redirect");
+		
+		return mv;
+	}
+	
+	/**
+	 * 게시글 삭제 요청 처리함수
+	 */
+	@RequestMapping("/delReBoard.blp") 
+	public ModelAndView delProc(ModelAndView mv, BoardVO bVO, String nowPage, String vw) {
+		rDao.delReBoard(bVO);
+		
+		//	데이터 심고
+		mv.addObject("VIEW", vw);
+		mv.addObject("NOWPAGE", nowPage);
+		
+		
+		//	뷰 부르고
+		mv.setViewName("reBoard/redirect");
+		return mv;
+	}
 }
