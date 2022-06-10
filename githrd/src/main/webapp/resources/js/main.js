@@ -34,6 +34,11 @@ $(document).ready(function(){
 		$(location).attr('href','/www/board/boardList.blp');
 	});
 	
+	$('#sbtn').click(function(){
+		$('#frm').attr('action', '/www/survey/surveyInfo.blp');
+		$('#frm').submit();
+	});
+	
 	$('#msgClose').click(function(){
 		$('#msgWin').css('display','none');
 		
