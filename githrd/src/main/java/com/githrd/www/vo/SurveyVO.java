@@ -4,7 +4,7 @@ import java.util.*;
 import java.text.*;
 
 public class SurveyVO {
-	private int mno, ano, cnt, sino, sqno, svno, total;
+	private int mno, ano, cnt, sino, sqno, svno, total, upno;
 	private double per;
 	private String id, avatar, title, body, sdate;
 	private Date svdate;
@@ -58,6 +58,13 @@ public class SurveyVO {
 	public void setTotal(int total) {
 		this.total = total;
 	}
+	
+	public int getUpno() {
+		return upno;
+	}
+	public void setUpno(int upno) {
+		this.upno = upno;
+	}
 	public double getPer() {
 		return per;
 	}
@@ -110,11 +117,12 @@ public class SurveyVO {
 	@Override
 	public String toString() {
 		return "SurveyVO [mno=" + mno + ", ano=" + ano + ", cnt=" + cnt + ", sino=" + sino + ", sqno=" + sqno
-				+ ", svno=" + svno + ", total=" + total + ", per=" + per + ", id=" + id + ", avatar=" + avatar
-				+ ", title=" + title + ", body=" + body + ", sdate=" + sdate + ", svdate=" + svdate + ", getMno()="
-				+ getMno() + ", getAno()=" + getAno() + ", getCnt()=" + getCnt() + ", getSino()=" + getSino()
-				+ ", getSqno()=" + getSqno() + ", getSvno()=" + getSvno() + ", getTotal()=" + getTotal() + ", getPer()="
-				+ getPer() + ", getId()=" + getId() + ", getAvatar()=" + getAvatar() + ", getTitle()=" + getTitle()
+				+ ", svno=" + svno + ", total=" + total + ", upno=" + upno + ", per=" + per + ", id=" + id + ", avatar="
+				+ avatar + ", title=" + title + ", body=" + body + ", sdate=" + sdate + ", svdate=" + svdate + ", bogi="
+				+ bogi + ", getBogi()=" + getBogi() + ", getMno()=" + getMno() + ", getAno()=" + getAno()
+				+ ", getCnt()=" + getCnt() + ", getSino()=" + getSino() + ", getSqno()=" + getSqno() + ", getSvno()="
+				+ getSvno() + ", getTotal()=" + getTotal() + ", getUpno()=" + getUpno() + ", getPer()=" + getPer()
+				+ ", getId()=" + getId() + ", getAvatar()=" + getAvatar() + ", getTitle()=" + getTitle()
 				+ ", getBody()=" + getBody() + ", getSdate()=" + getSdate() + ", getSvdate()=" + getSvdate()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";

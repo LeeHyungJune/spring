@@ -22,6 +22,12 @@
 </style>
 </head>
 <body>
+	<form method="post" action="/www/survey/survey.blp" id="frm" name="frm">
+		<input type="hidden" name="id" value="${SID}">
+		<input type="hidden" id="title" name="title">
+		<input type="hidden" id="sino" name="sino">
+	</form>
+
 	<div class="w3-content w3-center mx650">
 		<h1 class="w3-blue w3-padding w3-card-4">Survey Information</h1>
 <!-- 진행중인 설문 리스트 -->		
@@ -31,10 +37,10 @@
 			<div class="w3-col">
 	<c:forEach var="data" items="${ING}" varStatus="st">
 		<c:if test="${data.cnt eq 0 }">
-				<h3 class="w3-text-blue" id="${data.sino}">${st.count}. ${data.title}</h3>
+				<h3 class="w3-text-blue w3-button w3-col w3-hover-pink yet" id="${data.sino}">${st.count}. ${data.title}</h3>
 		</c:if>		
 		<c:if test="${data.cnt eq 1}">
-				<h3 id="${data.sino}">${st.count}. ${data.title}</h3>
+				<h3 class="w3-text-grey w3-button w3-col w3-hover-orange done" id="${data.sino}">${st.count}. ${data.title}</h3>
 		</c:if>
 	</c:forEach>
 			</div>
