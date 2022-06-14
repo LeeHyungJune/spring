@@ -3,6 +3,7 @@ package com.githrd.www.service;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.githrd.www.dao.*;
 import com.githrd.www.vo.*;
@@ -67,5 +68,40 @@ public class SurveyService {
 		
 		sVO.setBogi(munjae);
 		
+	}
+	
+	//	전체 응답 입력 처리 서비스 함수
+	@Transactional
+	public boolean addAllDap(SurveyVO sVO) {
+		//	응답 번호를 기억하는 배열을 꺼낸다.
+		int[] dapArr = sVO.getDap();
+		
+//		작동 확인용 테스트 카운트 변수
+//		int cnt = 0;
+		
+		for(int qno : dapArr) {
+		/*
+		 	//	트랜젝션 확인 테스트용 코드
+			if(cnt++ == 2) {
+				qno = 1111111;
+			}
+		*/
+			sVO.setSqno(qno);
+			sDao.addSurvey(sVO);
+		}
+		
+		return true;
+	}
+	
+	//	트랜잭션 적용 처리 작업 호출 함수
+	public boolean applyTx(SurveyVO sVO) {
+		boolean bool = false;
+		try {
+			bool = addAllDap(sVO);
+		} catch(Exception e) {
+			bool = false;
+		}
+		
+		return bool;
 	}
 }

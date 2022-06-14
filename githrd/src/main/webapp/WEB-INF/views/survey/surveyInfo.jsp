@@ -30,6 +30,7 @@
 
 	<div class="w3-content w3-center mx650">
 		<h1 class="w3-blue w3-padding w3-card-4">Survey Information</h1>
+
 <!-- 진행중인 설문 리스트 -->		
 <c:if test="${not empty ING }">		
 		<div class="w3-col w3-left-align w3-card-4">

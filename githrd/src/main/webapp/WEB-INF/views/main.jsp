@@ -45,13 +45,13 @@
 	<div class="w3-content w3-center mw700">
 		<h1 class="w3-blue w3-padding w3-card-4" style="margin-bottom: 5px;">GITHRD Project</h1>
 		<div class="w3-col">
+				<div class="w3-col" id="btnfr">
 <c:if test="${empty SID}">
 				<div class="w3-col w3-border-bottom pdb3">
 					<span class="w3-col m2 w3-button w3-small w3-lime w3-hover-green w3-left" id="jbtn">Join</span>
 					<span class="w3-col m2 w3-button w3-small w3-blue w3-hover-light-blue w3-right" id="lbtn">Login</span>
 				</div>
 </c:if>
-				<div class="w3-col" id="btnfr">
 <c:if test="${not empty SID}">
 					<div class="w3-col w3-border-bottom pdb3">
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-right mt0" id="obtn">LogOut</span>
