@@ -22,6 +22,27 @@ $(document).ready(function(){
 		document.frm1.reset();
 	});
 	
+	//	홈버튼 클릭 이벤트
+	$('#hbtn').click(function(){
+		$(location).attr('href','/www/');
+	});
+	
+	$('.done').click(function(){
+		var sno = $(this).attr('id');
+		var txt = $(this).html();
+		
+		
+		txt = txt.substring(txt.indexOf('.') + 2);
+		
+		
+		$('#title').val(txt);
+		$('#sino').val(sno);
+		
+		$('#frm').attr('action','/www/survey/surveyResult.blp');
+		
+		$('#frm').submit();
+	});
+	
 	$('#sbtn').click(function(){
 		var el1 = $('.quest');
 		var len1 = el1.length;
@@ -51,8 +72,5 @@ $(document).ready(function(){
 		
 	});
 	
-	//	홈버튼 클릭 이벤트
-	$('#hbtn').click(function(){
-		$(location).attr('href','/www/');
-	});
+	
 });

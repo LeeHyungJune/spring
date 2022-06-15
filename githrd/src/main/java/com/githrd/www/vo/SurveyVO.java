@@ -6,7 +6,7 @@ import java.text.*;
 public class SurveyVO {
 	private int mno, ano, cnt, sino, sqno, svno, total, upno;
 	private double per;
-	private String id, avatar, title, body, sdate;
+	private String id, avatar, title, body, sdate;	//	body: 설문문항내용과 보기를 담은 것
 	private Date svdate;
 	private List<SurveyVO> bogi;
 	private int[] dap;
