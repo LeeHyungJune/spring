@@ -10,9 +10,19 @@
 		</layout>
 	</appender>
 	
+	<!-- 2.	 File Appender -->
+	<appender name="file" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/src/main/resources/log/log.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
 	<!-- Application Loggers -->
 	<logger name="com.gitrhd.www">
 		<level value="info" />
+		<appender-ref ref="file" /> <!-- 3 -->
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

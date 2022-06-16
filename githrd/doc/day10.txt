@@ -1,0 +1,8 @@
+#	day10
+
+Log 처리
+
+1.	pom.xml 에서 최신 버전의 log4j 를 세팅한다.
+
+2.	src/main/resources/log4j.xml
+
