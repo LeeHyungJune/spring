@@ -2,6 +2,8 @@ package com.githrd.www.controller;
 
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ import com.githrd.www.vo.*;
 @Controller
 @RequestMapping("/survey")
 public class Survey {
+	
+	private static final Logger surveyLog = LoggerFactory.getLogger(Survey.class);
+	
 	@Autowired
 	SurveyDao sDao;
 	@Autowired
@@ -69,7 +74,9 @@ public class Survey {
 		if(!bool) {
 			//	실패한 작업이 있는 경우
 			view = "/www/survey/survey.blp";
-		} 
+		} else {
+			surveyLog.info(sVO.getId() + " 님이 " + sVO.getSino() + " ] 번 참여했습니다.");
+		}
 		
 		//	데이터 심고
 		mv.addObject("VIEW", view);
