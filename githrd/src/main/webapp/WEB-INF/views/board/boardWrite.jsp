@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BlackPink 게시판 글쓰기</title>
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/user.css">
-<script type="text/javascript" src="/whistle/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/whistle/resources/js/whistle/board.js?ver=1"></script>
+<title>GitHrd 게시판 글쓰기</title>
+<link rel="stylesheet" type="text/css" href="/www/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/www/css/user.css">
+<script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/www/js/whistle/board.js?ver=1"></script>
 <style type="text/css">
 	label {
 		font-size: 14pt;

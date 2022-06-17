@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BlackPink 게시판 리스트</title>
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/user.css">
-<script type="text/javascript" src="/whistle/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/whistle/resources/js/whistle/board.js?ver=2"></script>
+<title>GitHrd 게시판 리스트</title>
+<link rel="stylesheet" type="text/css" href="/www/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/www/css/user.css">
+<script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/www/js/board/board.js?ver=2"></script>
 <style type="text/css">
 	html, body {
 		height: 100%;
@@ -32,9 +32,9 @@
 </script>
 </head>
 <body class="w3-light-grey">
-	<form method="POST" action="/whistle/board/boardDetail.blp" id="frm" name="frm">
-		<input type="hidden" name="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="bno" >
+	<form method="POST" action="/www/board/boardDetail.blp" id="frm" name="frm">
+		<input type="hidden" name="nowPage" id="nowPage"  value="${PAGE.nowPage}">
+		<input type="hidden" name="bno" id="bno">
 	</form>
 	<div class="w3-content mxw700">
 		<!-- 페이지 헤더 -->
@@ -104,7 +104,7 @@
 			</div>
 		</div>
 		<!-- 페이지 처리 태그 끝 -->
-		<form method="POST" action="/whistle/board/boardList.blp" id="pageFrm" name="pageFrm">
+		<form method="POST" action="/www/board/boardList.blp" id="pageFrm" name="pageFrm">
 			<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		</form>
 	</div>

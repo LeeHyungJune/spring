@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BlackPink 게시판 상세보기</title>
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/whistle/resources/css/user.css">
-<script type="text/javascript" src="/whistle/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/whistle/resources/js/whistle/board.js"></script>
+<title>GitHrd 게시판 상세보기</title>
+<link rel="stylesheet" type="text/css" href="/www/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/www/css/user.css">
+<script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/www/js/www/board.js"></script>
 <style type="text/css">
 	label {
 		font-size: 14pt;
@@ -44,7 +44,7 @@
 			</div>
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label class="w3-col s2">작성일</label>
-				<h4 id="wdate" class="w3-col m10">${DATA.sdate}  ${DATA.stime}</h4>
+				<h4 id="wdate" class="w3-col m10">${DATA.sdate}</h4>
 			</div>
 			
 <c:if test="${not empty LIST}">	
@@ -53,7 +53,7 @@
 				<div class="w3-col m10 w3-center" id="preview">
 		<c:forEach var="data" items="${LIST}">		
 					<div class="inblock picbox">
-						<img class="pic" src="/whistle${data.dir}/${data.savename}"> 
+						<img class="pic" src="/www${data.dir}/${data.savename}"> 
 					</div>
 		</c:forEach>
 				</div>
@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	
-	<form method="POST" action="/whistle/board/boardList.blp" id="pageFrm" name="pageFrm">
+	<form method="POST" action="/www/board/boardList.blp" id="pageFrm" name="pageFrm">
 		<input type="hidden" name="nowPage" value="${NOWPAGE}">
 		<%-- <input type="hidden" name="nowPage" value="${param.nowPage}"> --%>
 	</form>
