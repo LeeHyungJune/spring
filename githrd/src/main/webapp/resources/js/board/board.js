@@ -42,7 +42,9 @@ $(document).ready(function(){
 	});
 	
 	$('#lbtn').click(function(){
-		$(location).attr('href','/www/member/login.blp');
+		$('#vw').val('/www/board/boardList.blp'); 
+		$('#frm').attr('action','/www/member/login.blp');
+		$('#frm').submit();
 	});
 	
 	$('#jbtn').click(function(){
@@ -56,8 +58,8 @@ $(document).ready(function(){
 	});
 	
 	$('#wbtn').click(function(){
-		$('#pageFrm').attr('action', '/www/board/boardWrite.blp');
-		$('#pageFrm').submit();
+		$('#frm').attr('action', '/www/board/boardWrite.blp');
+		$('#frm').submit();
 	});
 	
 	$('#filebox').on('change', '.upfile', function(e){
@@ -128,6 +130,15 @@ $(document).ready(function(){
 		
 		$(document.frm.bno).val(sno);
 		
+		$('#frm').submit();
+	});
+	
+	$('#rbtn').click(function(){
+		document.frm.reset();
+	});
+	
+	$('#listbtn').click(function(){
+		$('#frm').attr('action','/www/board/boardList.blp');
 		$('#frm').submit();
 	});
 });

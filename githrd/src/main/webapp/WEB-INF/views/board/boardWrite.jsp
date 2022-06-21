@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/www/js/whistle/board.js?ver=1"></script>
+<script type="text/javascript" src="/www/js/board/board.js?ver=1"></script>
 <style type="text/css">
 	label {
 		font-size: 14pt;
@@ -25,10 +25,9 @@
 <body>
 	<div class="w3-content mxw700">
 		<h1 class="w3-blue w3-padding w3-center w3-card-4">게시글 작성</h1>
-		<form method="POST" action="/whistle/board/boardWriteProc.blp" encType="multipart/form-data"
+		<form method="POST" action="/www/board/boardWriteProc.blp" encType="multipart/form-data"
 				id="frm" name="frm" class="w3-col w3-card-4 frmpadding">
-			<input type="hidden" name="nowPage" id="nowPage" value="1">
-		<%-- <input type="hidden" name="nowPage" id="nowPage" value="${param.nowPage}"> --%>
+			<input type="hidden" name="nowPage" id="nowPage" value="${param.nowPage}">
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label for="title" class="w3-col s2">Title</label>
 				<input type="text" id="title" name="title" class="w3-col m10 w3-input w3-border">

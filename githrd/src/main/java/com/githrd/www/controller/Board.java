@@ -34,6 +34,7 @@ public class Board {
 	 */
 	@RequestMapping("/boardList.blp")
 	public ModelAndView boardList(ModelAndView mv, PageUtil page) {
+		System.out.println("######### nowPage: " + page.getNowPage());
 		//	할일
 		//	1.	총 게시글 수 가져오고
 		int total = bDao.getTotal();
@@ -67,6 +68,16 @@ public class Board {
 		//	뷰 정하고
 		mv.setViewName("board/boardDetail");
 		//	뷰 반환
+		return mv;
+	}
+	
+	//	게시판 글쓰기 폼보기 요청 처리함수
+	@RequestMapping("/boardWrite.blp")
+	public ModelAndView boardWrite(ModelAndView mv) {
+		
+		mv.setViewName("board/boardWrite");
+		
+		
 		return mv;
 	}
 }

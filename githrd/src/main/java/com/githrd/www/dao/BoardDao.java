@@ -31,4 +31,14 @@ public class BoardDao {
 	public List<FileVO> getFileList(int bno) {
 		return sqlSession.selectList("bSQL.fileList", bno);
 	}
+	
+	//	게시글 입력 전담 처리함수
+	public int addBoard(BoardVO bVO) {
+		return sqlSession.insert("bSQL.addBoard", bVO);
+	}
+	
+	//	게시글 파일 입력 전담 처리함수
+	public int addFile(FileVO fVO) {
+		return sqlSession.insert("bSQL.insertFile", fVO);
+	}
 }
