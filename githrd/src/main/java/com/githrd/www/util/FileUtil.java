@@ -50,7 +50,7 @@ public class FileUtil {
 			String preName = oldName.substring(0, len);	//	파일 이름만 분리
 			String ext = oldName.substring(len);	//	확장자 분리
 			
-			newName = preName + "(" + count + ")" + ext;
+			newName = preName + "_" + count + ext;
 			
 			file = new File(path, newName);
 		}

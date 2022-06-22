@@ -1,6 +1,5 @@
 package com.githrd.www.vo;
 
-import java.sql.Time;
 import java.util.Date;
 import java.text.*;
 
@@ -9,6 +8,7 @@ public class FileVO {
 	private long len;
 	private String id, oriname, savename, dir, sdate;
 	private Date wdate;
+	
 	public int getBno() {
 		return bno;
 	}

@@ -32,12 +32,12 @@ public class BoardDao {
 		return sqlSession.selectList("bSQL.fileList", bno);
 	}
 	
-	//	게시글 입력 전담 처리함수
+	// 게시글 입력 전담 처리함수
 	public int addBoard(BoardVO bVO) {
-		return sqlSession.insert("bSQL.addBoard", bVO);
+		return sqlSession.insert("bSQL.insertBoard", bVO);
 	}
 	
-	//	게시글 파일 입력 전담 처리함수
+	// 첨부파일 정보 입력 전담 처리함수
 	public int addFile(FileVO fVO) {
 		return sqlSession.insert("bSQL.insertFile", fVO);
 	}

@@ -70,10 +70,10 @@
 		    AND isshow = 'Y'	
 	</select>
 	
-	<insert id="addBoard" parameterType="bVO">
+	<insert id="insertBoard" parameterType="bVO">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
-			SELECT
-				NVL(MAX(bno)+1, 100001)
+			SELECT 
+				NVL(MAX(bno) + 1, 100001) 
 			FROM 
 				board
 		</selectKey>
@@ -83,24 +83,22 @@
 		VALUES(
 		    #{bno},
 		    (SELECT mno FROM member WHERE id = #{id}),
-		    #{title},
-		    #{body}
+		    #{title}, #{body}
 		)
 	</insert>
 	
 	<insert id="insertFile" parameterType="fVO">
-	<selectKey keyProperty="fno" resultType="int" order="BEFORE">
-		SELECT
-			NVL(MAX(fno)+1, 10000001) 
-		FROM 
-			fileinfo
-	</selectKey>
+		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
+			SELECT 
+				NVL(MAX(fno) + 1, 10000001) 
+			FROM 
+				fileinfo
+		</selectKey>
 		
 		INSERT INTO
 		    fileinfo(fno, fbno, oriname, savename, dir, len)
 		VALUES(
 		    #{fno}, #{bno}, #{oriname}, #{savename}, #{dir}, #{len}
-		    
-		)	
+		)
 	</insert>
 </mapper>

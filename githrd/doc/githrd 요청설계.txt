@@ -257,18 +257,26 @@
 --------------------------------------------------------------------------------------
 #	파일게시판 게시글 상세 보기 요청
 요청내용	:	/www/Board/boardDetail.blp
-파라미터	:	[nowPage], bno
+파라미터	:	nowPage, bno
 컨트롤러	:	com.githrd.www.controller.Board
 처리함수	:	boardDetail()
 뷰			:	/WEB-INF/views/board/boardDetail.jsp
 
 --------------------------------------------------------------------------------------
-#	게시판 리스트 보기 요청
+#	게시판 글쓰기 폼 보기 요청
 요청내용	:	/www/Board/boardWrite.blp
 파라미터	:	nowPage, 
 컨트롤러	:	com.githrd.www.controller.Board
 처리함수	:	boardWrite()
 뷰			:	/WEB-INF/views/board/boardWrite.jsp
+
+--------------------------------------------------------------------------------------
+#	게시판 글등록 처리 요청
+요청내용	:	/www/Board/boardWriteProc.blp
+파라미터	:	nowPage, id, title, body, [file]
+컨트롤러	:	com.githrd.www.controller.Board
+처리함수	:	boardWriteProc()
+뷰			:	/WEB-INF/views/board/boardWriteProc.jsp
 
 --------------------------------------------------------------------------------------
 
