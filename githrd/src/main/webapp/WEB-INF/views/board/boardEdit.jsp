@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BlackPink 게시판 상세보기</title>
+<title>BlackPink 게시판 수정</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/www/img/favicon/favicon-32x32.png">
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
@@ -33,26 +33,20 @@
 <%-- 		<input type="hidden" name="nowPage" value="${param.nowPage}"> --%>
 	</form>
 	<div class="w3-content mxw700">
-		<h1 class="w3-blue w3-padding w3-center w3-card-4">게시글 상세보기</h1>
+		<h1 class="w3-blue w3-padding w3-center w3-card-4">게시글 수정</h1>
+	<form method="POST" action="/www/board/boardEditProc.blp" id="efrm" name="efrm" encType="multipart/form-data">
+		<input type="hidden" name="otitle" value="${DATA.title}">
+		<input type="hidden" name="obody" value="${DATA.body}">
+		<input type="hidden" name="nowPage" value="${NOWPAGE}">
+		<input type="hidden" name="bno" value="${DATA.bno}">
+		
 		<div class="w3-col w3-card-4 frmpadding">
 			<div class="w3-col w3-margin-top w3-margin-bottom">
-				<label class="w3-col s2">글번호</label>
-				<h4 id="bno" class="w3-col m10 mgv0">${DATA.bno}</h4>
-			</div>
-			<div class="w3-col w3-margin-top w3-margin-bottom">
-				<label class="w3-col s2">Writer</label>
-				<h4 id="writer" class="w3-col m10 mgv0">${DATA.id}</h4>
-			</div>
-			<div class="w3-col w3-margin-top w3-margin-bottom">
-				<label class="w3-col s2">작성일</label>
-				<h4 id="wdate" class="w3-col m10 mgv0">${DATA.sdate}</h4>
-			</div>
-			<div class="w3-col w3-margin-top w3-margin-bottom">
-				<label for="title" class="w3-col s2">Title</label>
-				<input type="text" id="title" name="title" class="w3-col m10 w3-input w3-border" value='${DATA.title}'>
+				<label class="w3-col s2">Title</label>
+				<h4 id="title" class="w3-col m10 mgv0">${DATA.title}</h4>
 			</div>
 			<div class="w3-col w3-margin-bottom">
-				<label class="w3-col s2">AddFile</label>
+				<label class="w3-col s2">File</label>
 				<div class="w3-col m10" id="filebox">
 					<input type="file" name="file" class="w3-input w3-border w3-margin-bottom upfile">
 				</div>
@@ -70,14 +64,13 @@
 				</div>
 			</div>
 			
-			
 <c:if test="${not empty LIST}">			
 			<div class="w3-col w3-margin-bottom" id="previewbox">
 				<label class="w3-col s2">Image</label>
 				<div class="w3-col m10 w3-center" id="preview">
 		<c:forEach var="data" items="${LIST}">
 			<c:if test="${not empty data.savename}">
-					<div class="inblock picbox">
+					<div class="inblock picbox evtPic" id="${data.fno}">
 				<c:if test="${data.dir eq '/www/upload/'}">
 						<img class="pic" src="${data.dir}${data.savename}"> 
 				</c:if>
@@ -91,21 +84,15 @@
 			</div>
 </c:if>
 		</div>
-<c:if test="${SID eq DATA.id }">		
+	</form>
+		
 		<div class="w3-col w3-margin-top w3-card-4">
-			<div class="w3-quarter w3-button w3-blue" id="hbtn">Home</div>
-			<div class="w3-quarter w3-button w3-green" id="listbtn">리스트</div>
-			<div class="w3-quarter w3-button w3-deep-orange" id="edit">글수정</div>
-			<div class="w3-quarter w3-button w3-red" id="dbtn">글삭제</div>
+			<div class="w3-third w3-button w3-blue" id="hbtn">Home</div>
+			<div class="w3-third w3-button w3-green" id="listbtn">리스트</div>
+			<div class="w3-third w3-button w3-deep-orange" id="editProc">글수정</div>
 		</div>
-</c:if>
-<c:if test="${SID ne DATA.id }">		
-		<div class="w3-col w3-margin-top w3-card-4">
-			<div class="w3-half w3-button w3-blue" id="hbtn">Home</div>
-			<div class="w3-half w3-button w3-green" id="listbtn">리스트</div>
-		</div>
-</c:if>		
 	</div>
+	
 	<form method="POST" action="/www/board/boardList.blp" id="pageFrm" name="pageFrm">
 		<input type="hidden" name="nowPage" value="${NOWPAGE}">
 <%-- 		<input type="hidden" name="nowPage" value="${param.nowPage}"> --%>

@@ -52,8 +52,8 @@ $(document).ready(function(){
 	});	
 	
 	$('#obtn').click(function(){
+		$('#vw').val('/www/board/boardList.blp');
 		$('#frm').attr('action', '/www/member/logout.blp');
-		$('#view').val('/www/board/boardList.blp');
 		$('#frm').submit();
 	});
 	
@@ -186,6 +186,72 @@ $(document).ready(function(){
 			$('#body').focus();
 		}
 		
+		$('#frm').submit();
+	});
+	
+	//	수정버튼 이벤트 처리
+	$('#edit').click(function(){
+		$('#frm').attr('action','/www/board/boardEdit.blp');
+		$('#frm').submit();
+	});
+	
+	
+	//	첨부파일 삭제 이벤트
+	$('.evtPic').click(function(){
+		//	파일번호 꺼내오고
+		var sno = $(this).attr('id');
+		var el = $(this);
+		
+		if(confirm("삭제하시겠습니까?")){
+			$.ajax({
+				url: '/www/board/fileDel.blp',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					fno : sno
+				},
+				success: function(data) {
+					if(data.result == 'OK') {
+						$(el).remove();
+					}
+				},
+				error: function() {
+					alert('### 통신에러 ###');
+				}
+			});
+			
+		}
+	});
+	
+	//	글수정 버튼 이벤트
+	$('#editProc').click(function(){
+		$('.upfile').last().prop('disabled', true);
+		
+		//	데이터 수정 여부 검사
+		var otitle = $('#otitle').val();
+		var obody = $('#obody').val();
+		
+		var title = $('#title').val();
+		var body = $('#body').val();
+		
+		if(otitle == title){
+			$('#title').prop('disabled', true);
+		}
+		if(obody == body){
+			$('#body').prop('disabled', true);
+		}
+		
+		if(otitle == title && obody == body && $('#filebox > input').length == 1) {
+			return;
+		}
+		
+		$('#frm').submit();
+		
+	});
+	
+	//	글삭제 버튼 이벤트
+	$('#dbtn').click(function(){
+		$('#frm').attr('action', '/www/board/boardDel.blp');
 		$('#frm').submit();
 	});
 });

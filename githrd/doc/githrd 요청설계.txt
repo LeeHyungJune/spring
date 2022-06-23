@@ -279,6 +279,40 @@
 뷰			:	/WEB-INF/views/board/boardWriteProc.jsp
 
 --------------------------------------------------------------------------------------
+#	게시판 글수정 폼 보기 요청
+요청내용	:	/www/Board/boardEdit.blp
+파라미터	:	nowPage, bno, 
+컨트롤러	:	com.githrd.www.controller.Board
+처리함수	:	boardEdit()
+뷰			:	/WEB-INF/views/board/boardEdit.jsp
+
+--------------------------------------------------------------------------------------
+#	게시판 첨부파일 삭제 처리 요청	-	비동기 통신 처리
+요청내용	:	/www/board/fileDel.blp
+파라미터	:	fno
+컨트롤러	:	com.githrd.www.controller.Board
+처리함수	:	fileDel()
+뷰			:	json
+
+--------------------------------------------------------------------------------------
+#	게시판 글수정 처리 요청
+요청내용	:	/www/board/boardEditProc.blp
+파라미터	:	nowPage, title, body[, file]
+컨트롤러	:	com.githrd.www.controller.Board
+처리함수	:	boardEditProc()
+뷰			:	redirect.jsp
+				성공: /www/board/boardDetail.jsp
+				실패: /www/board/boardEdit.jsp
+				
+--------------------------------------------------------------------------------------
+#	게시판 게시글 삭제 처리 요청
+요청내용	:	/www/board/boardDel.blp
+파라미터	:	bno, nowPage
+컨트롤러	:	com.githrd.www.controller.Board
+처리함수	:	boardDel()
+뷰			:	/www/board/boardList.blp
+
+--------------------------------------------------------------------------------------
 
 
 
