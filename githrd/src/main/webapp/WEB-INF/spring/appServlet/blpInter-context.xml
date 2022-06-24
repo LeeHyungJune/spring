@@ -22,17 +22,18 @@
 				<exclude-mapping path="/member/delMember.blp" />
 				<exclude-mapping path="/member/myInfoEdit.blp" />
 				<exclude-mapping path="/member/infoEditProc.blp" />
+				<exclude-mapping path="/board/boardWrite*.blp" />
 				<beans:ref bean="loginCheck" />
 		</interceptor>
 	
 		<interceptor>
-			<mapping path="/member/logout.blp"/>
-			<mapping path="/member/*Info.blp"/>
-			<mapping path="/member/myInfoEdit.blp"/>
-			<mapping path="/member/InfoEditProc.blp"/>
-			<mapping path="/member/memberList.blp"/>
-			<mapping path="/member/delMember.blp"/>
-			<beans:ref bean="loginRedirect"/>
+			<mapping path="/member/logout.blp" />
+			<mapping path="/member/*Info.blp" />
+			<mapping path="/member/myInfoEdit.blp" />
+			<mapping path="/member/InfoEditProc.blp" />
+			<mapping path="/member/memberList.blp" />
+			<mapping path="/member/delMember.blp" />
+			<beans:ref bean="loginRedirect" />
 		</interceptor>
 	</interceptors>
 	
