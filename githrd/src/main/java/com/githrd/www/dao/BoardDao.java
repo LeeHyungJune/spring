@@ -32,6 +32,11 @@ public class BoardDao {
 		return sqlSession.selectList("bSQL.fileList", bno);
 	}
 	
+	//	회원번호 조회 전담 처리 함수
+	public int getMno(String id) {
+		return sqlSession.selectOne("bSQL.selMno", id);
+	}
+	
 	// 게시글 입력 전담 처리함수
 	public int addBoard(BoardVO bVO) {
 		return sqlSession.insert("bSQL.insertBoard", bVO);
@@ -56,5 +61,6 @@ public class BoardDao {
 	public int delBoard(int bno) {
 		return sqlSession.update("bSQL.delBoard", bno);
 	}
+	
 }
 

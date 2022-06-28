@@ -39,6 +39,10 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
+	$('#emp').click(function(){
+		$(location).attr('href','/www/emp/empPage.blp');
+	});
+	
 	$('#msgClose').click(function(){
 		$('#msgWin').css('display','none');
 		

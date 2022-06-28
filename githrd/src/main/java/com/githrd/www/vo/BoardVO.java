@@ -10,7 +10,7 @@ import java.text.*;
 
 public class BoardVO {
 	private int mno, bno, upno, rno, ano, click, cnt, step;
-	private String id, title, body, sdate, avatar;
+	private String id, title, body, sdate, avatar, result;
 	private Date wdate;
 	private List<FileVO> list;
 	private MultipartFile[] file;
@@ -30,8 +30,15 @@ public class BoardVO {
 	 	commons-fileupload.jar 는 배열처리가 되기 때문에 같은 키값으로 파일을 업로드해도 처리가 된다.
 	 	
 	 */
+	
 	public MultipartFile[] getFile() {
 		return file;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 	public void setFile(MultipartFile[] file) {
 		this.file = file;

@@ -20,6 +20,7 @@ import com.githrd.www.vo.*;
 public class Member {
 	
 	private static final Logger memberLog = LoggerFactory.getLogger(Member.class);	//	4.
+	private static final Logger membLog = LoggerFactory.getLogger("memberLog");
 	
 	@Autowired
 	MemberDao mDao;
@@ -45,7 +46,7 @@ public class Member {
 	*/
 	
 	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw"})
-	public ModelAndView loginProc(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
+	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv) {
 //		System.out.println("### 일반 사용자");
 //		System.out.println("************** id : " + id);
 //		System.out.println("************** pw : " + pw);
@@ -53,10 +54,11 @@ public class Member {
 //		System.out.println("************** mVO.pw : " + mVO.getPw());
 		
 		int cnt = mDao.getLogin(mVO);
+		mVO.setCnt(cnt);
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());	//	로그인 처리
 			//	로그 처리
-			memberLog.info(mVO.getId() + " 님이 로그인 했습니다.");
+//			memberLog.info(mVO.getId() + " 님이 로그인 했습니다.");
 			
 			
 			session.setAttribute("MSG_CHECK", "OK");
@@ -76,7 +78,7 @@ public class Member {
 		return mv;
 	}
 	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw", "vw", "nowPage"})
-	public ModelAndView loginProc(MemberVO mVO, HttpSession session, ModelAndView mv, 
+	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, 
 											RedirectView rv, String vw, String nowPage) {
 //		System.out.println("### 일반 사용자");
 //		System.out.println("************** id : " + id);
@@ -121,7 +123,7 @@ public class Member {
 	*/
 	
 	@RequestMapping(path="/loginProc.blp", params="id=admin")
-	public ModelAndView adminLogin(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
+	public ModelAndView adminLogin(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv) {
 //		System.out.println("### 관리자");
 		
 		int cnt = mDao.getLogin(mVO);
@@ -152,12 +154,12 @@ public class Member {
 	*/
 	
 	@RequestMapping("/logout.blp")
-	public ModelAndView logout(ModelAndView mv, HttpSession session, String vw, String nowPage) {
-		String sid = (String) session.getAttribute("SID");
-		
+	public ModelAndView logout(ModelAndView mv, HttpSession session, MemberVO mVO, String vw, String nowPage) {
 		session.removeAttribute("SID");
 		
-		memberLog.info("### " + sid + " 님이 로그아웃 했습니다.");
+		mVO.setResult("OK");
+		
+//		memberLog.info("### " + sid + " 님이 로그아웃 했습니다.");
 		
 		if(vw == null) {
 			vw = "/www/";
