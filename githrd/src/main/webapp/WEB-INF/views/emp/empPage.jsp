@@ -11,6 +11,17 @@
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/www/js/emp.js"></script>
+<style type="text/css">
+	.contentForm{
+		width: 200px; 
+		opacity: 0.8;
+	}
+	.closeWin{
+		position: relative;
+		bottom: 20px;
+		left: 30px;
+	}
+</style>
 </head>
 <body>
 	<div class="w3-content w3-center mx700">
@@ -32,8 +43,89 @@
 				<option value="10">SALESE</option>
 			</select>
 			<select class="w3-quarter w3-select w3-border" name="eList" id="eList">
-				<option disabled selected># 조회분류선택 #</option>
+				<option disabled selected># 직원이름선택 #</option>
 			</select>
+		</div>
+		<div class="w3-col w3-margin-top">
+			<select class="w3-quarter w3-select w3-border" name="selInitial" id="selInitial">
+				<option disabled selected>### 이니셜 선택 ###</option>
+	<c:forEach var="data" items="${ILIST}">
+		<option value="${data.name}">${data.name}</option>
+	</c:forEach>
+			</select>
+			<select class="w3-threequarter w3-select w3-border" name="selName" id="selName">
+				<option class="w3-center" disabled selected>### 이름 선택 ###</option>
+			</select>
+		</div>
+		<!-- 사원 정보 표시창 -->
+		<div class="w3-col w3-margin-top w3-padding w3-card-4 w3-display-container" id="infoBox">
+			<h3 class="w3-col w3-container w3-left-align"><span class="w3-text-blue ename edata"></span> 사원 정보<span id="closeWin" class="w3-display-topright w3-button w3-right w3-hover-white">&times;</span></h3>
+			<div class="w3-col w3-border w3-border-grey">
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">사원번호 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="eno"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">사원이름 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col ename edata"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">사원직급 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="job"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">사원급여 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="sal"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">커 미 션 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="comm"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">급여등급 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="grade"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">부서이름 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="dname"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">부서위치 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="loc"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">상사이름 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="mgr"></h4>
+					</div>
+				</div>
+				<div class="w3-col ">
+					<h4 class="w3-col w3-right-align w3-text-dark-grey contentForm">입 사 일 : </h4>
+					<div class="w3-rest w3-left-align" style="padding-left: 30px;">
+						<h4 class="w3-text-blue w3-col edata" id="hdate"></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="w3-col w3-margin-top w3-card-4">
+			<div class="w3-col w3-button w3-green" id="hbtn">Home</div>
 		</div>
 	</div>
 </body>

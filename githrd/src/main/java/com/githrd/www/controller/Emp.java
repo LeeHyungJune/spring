@@ -25,9 +25,13 @@ public class Emp {
 		list.add("부 서");
 		list.add("직 급");
 		
+		List<EmpVO> iList = eDao.getIniList();
+		
+		
+		
 		//	데이터 전달하고
 		mv.addObject("LIST", list);
-		
+		mv.addObject("ILIST", iList);
 		mv.setViewName("emp/empPage");
 		
 		return mv;
@@ -48,6 +52,23 @@ public class Emp {
 	public List<EmpVO> partList(EmpVO eVO) {
 		List<EmpVO> list = eDao.partList(eVO);
 		
+		return list;
+	}
+	
+	//	사원 정보 조회 요청 처리함수
+	@RequestMapping("/empInfo.blp")
+	@ResponseBody
+	public EmpVO empInfo(EmpVO eVO) {
+		eVO = eDao.getInfo(eVO);
+		return eVO;
+	}
+	
+	
+	//	이니셜로 정보 조회 처리함수
+	@RequestMapping("/enameList.blp")
+	@ResponseBody
+	public List<EmpVO> enameList(EmpVO eVO) {
+		List<EmpVO> list = eDao.nameList(eVO);
 		return list;
 	}
 }
