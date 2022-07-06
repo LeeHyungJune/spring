@@ -1,0 +1,26 @@
+### easy Project 요청 설계 ###
+
+--------------------------------------------------------------------------------------
+###	회원관련 요청 설계
+#	login 보기요청
+요청내용	:	/web/, /web/login.hrd
+파라미터	:	X
+컨트롤러	:	com.githrd.web.controller.MainController
+처리함수	:	login()
+뷰			:	/WEB-INF/views/login.jsp
+
+--------------------------------------------------------------------------------------
+#	login 처리요청
+요청내용	:	/web/loginProc.blp
+파라미터	:	id, pw
+컨트롤러	:	com.githrd.web.controller.MainController
+처리함수	:	loginProc()
+뷰			:	/web/
+
+--------------------------------------------------------------------------------------
+#	main 페이지 보기요청
+요청내용	:	/web/main.hrd
+파라미터	:	X
+컨트롤러	:	com.githrd.web.controller.MainController
+처리함수	:	getMain()
+뷰			:	/WEB-INF/views/main.jsp

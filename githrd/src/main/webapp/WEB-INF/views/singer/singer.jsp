@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/www/css/base.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
@@ -52,9 +51,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="w3-col w3-purple w3-center w3-padding w3-margin-bottom">
+		<div class="w3-col w3-center w3-padding w3-margin-bottom" id="photoBox">
 			<!-- 가수 사진 출력 -->
-			
+			<div class="imgBox230 inblock w3-border w3-card-4">
+				<img class=" infoAvtBox" src="/www/img/avatar/noimage.jpg">
+			</div>
 		</div>
 	</div>
 </body>
