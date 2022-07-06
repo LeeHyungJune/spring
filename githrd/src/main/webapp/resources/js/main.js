@@ -43,6 +43,14 @@ $(document).ready(function(){
 		$(location).attr('href','/www/emp/empPage.blp');
 	});
 	
+	$('#singer').click(function(){
+		$(location).attr('href','/www/singer/singer.blp');
+	});
+	
+	$('#cate').click(function(){
+		$(location).attr('href','/www/cate/product.blp');
+	});
+	
 	$('#msgClose').click(function(){
 		$('#msgWin').css('display','none');
 		

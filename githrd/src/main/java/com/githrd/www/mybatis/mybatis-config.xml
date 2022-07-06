@@ -17,6 +17,7 @@
 		<typeAlias alias="eVO" type="com.githrd.www.vo.EmpVO" />
 		<typeAlias alias="aVO" type="com.githrd.www.vo.ArduVO" />
 		<typeAlias alias="songVO" type="com.githrd.www.vo.SingerVO" />
+		<typeAlias alias="pVO" type="com.githrd.www.vo.ProductVO" />
 		<typeAlias alias="page" type="com.githrd.www.util.PageUtil" />
 	</typeAliases>
 	
@@ -29,5 +30,6 @@
 		<mapper resource="com/githrd/www/sql/EmpSQL.xml" />
 		<mapper resource="com/githrd/www/sql/SingerSQL.xml" />
 		<mapper resource="com/githrd/www/sql/ArduSQL.xml" />
+		<mapper resource="com/githrd/www/sql/ProductSQL.xml" />
 	</mappers>
 </configuration>

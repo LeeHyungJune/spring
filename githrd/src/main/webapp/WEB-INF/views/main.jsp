@@ -85,6 +85,12 @@
 						<div class="w3-col m3 pdh10">
 							<h5 class="w3-col w3-button w3-amber w3-hover-lime" id="emp">사원페이지</h5>
 						</div>
+						<div class="w3-col m3 pdh10">
+							<h5 class="w3-col w3-button w3-lime w3-hover-aqua" id="singer">Singer</h5>
+						</div>
+						<div class="w3-col m3 pdh10">
+							<h5 class="w3-col w3-button w3-lime w3-hover-aqua" id="cate">Product</h5>
+						</div>
 					</div>
 				</div>
 		</div>
