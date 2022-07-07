@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LED</title>
+</head>
+<body>
+	<form method="POST" action="http://주소" style="text-align: center;" name="frm">
+		<h1>LED 선택</h1>
+		<input type="hidden" name="LED" id="led">
+		<input type="button" value="RED" id="rbtn" style="width: 150px;" onclick="setVal(this)">
+		<input type="button" value="GREEN" id="gbtn" style="width: 150px;" onclick="setVal(this)">
+	</form>
+<script type="text/javascript">
+	function setVal(el) {
+		document.getElementById('led').value = el.value;
+		document.frm.submit();
+	}
+/*
+	document.getElementById('rbtn').onclick = function(){
+		
+		var txt = this.value;
+		document.getElementById('led').value = txt;
+		
+	};
+	document.getElementById('gbtn').onclick = function(){
+		setVal(this);
+		
+		var txt = this.value;
+		document.getElementById('led').value = txt;
+		
+	};
+*/	
+</script>
+</body>
+</html>

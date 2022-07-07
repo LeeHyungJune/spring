@@ -12,7 +12,7 @@ public class LoginRedirectInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler)
 			throws Exception {
 		if(req.getSession().getAttribute("SID") == null) {
-			resp.sendRedirect("/www/member/login.blp");
+			resp.sendRedirect("/web/member/login.blp");
 			return false;
 		}
 		return true;

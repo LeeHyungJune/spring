@@ -40,6 +40,13 @@
 				</select>
 			</div>
 		</div>
+		<!-- 제품 리스트 페이지 -->
+		<form method="post" action="/www/cate/productDetail.blp" name="frm" id="frm">
+			<input type="hidden" name="pno">
+			<div class="w3-padding-16 w3-center" id="pPanel">
+				
+		   </div>
+		</form>
 	</div>
 </body>
 </html>

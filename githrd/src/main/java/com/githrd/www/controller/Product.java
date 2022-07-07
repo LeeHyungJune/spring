@@ -35,4 +35,23 @@ public class Product {
 		
 		return list;
 	}
+	
+	@RequestMapping("/productList.blp")
+	@ResponseBody
+	public List<ProductVO> productList(ProductVO pVO) {
+		List<ProductVO> list = pDao.getProductList(pVO);
+		
+		return list;
+	}
+	
+	@RequestMapping("/productDetail.blp")
+	public ModelAndView productDetail(ModelAndView mv, ProductVO pVO) {
+		
+		pVO = pDao.getProductDetail(pVO);
+		
+		mv.addObject("DATA", pVO);
+		mv.setViewName("cate/productDetail");
+		
+		return mv;
+	}
 }

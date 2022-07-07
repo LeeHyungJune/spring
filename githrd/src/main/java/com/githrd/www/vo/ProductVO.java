@@ -4,10 +4,35 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ProductVO {
-	private int cno, pno, cnt, step;
+	private int cno, pno, fno, cnt, step;
 	private long price;
-	private String cname, sdate, pname, summary, manuf_co;
+	private String cname, sdate, pname, summary, manuf_co, oname, sname, dir;
 	private Date reldate;
+	
+	public int getFno() {
+		return fno;
+	}
+	public void setFno(int fno) {
+		this.fno = fno;
+	}
+	public String getOname() {
+		return oname;
+	}
+	public void setOname(String oname) {
+		this.oname = oname;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public String getDir() {
+		return dir;
+	}
+	public void setDir(String dir) {
+		this.dir = dir;
+	}
 	public int getCno() {
 		return cno;
 	}
@@ -78,6 +103,18 @@ public class ProductVO {
 	public void setReldate(Date reldate) {
 		this.reldate = reldate;
 		setSdate();
+	}
+	@Override
+	public String toString() {
+		return "ProductVO [cno=" + cno + ", pno=" + pno + ", fno=" + fno + ", cnt=" + cnt + ", step=" + step
+				+ ", price=" + price + ", cname=" + cname + ", sdate=" + sdate + ", pname=" + pname + ", summary="
+				+ summary + ", manuf_co=" + manuf_co + ", oname=" + oname + ", sname=" + sname + ", dir=" + dir
+				+ ", reldate=" + reldate + ", getFno()=" + getFno() + ", getOname()=" + getOname() + ", getSname()="
+				+ getSname() + ", getDir()=" + getDir() + ", getCno()=" + getCno() + ", getPno()=" + getPno()
+				+ ", getCnt()=" + getCnt() + ", getStep()=" + getStep() + ", getPrice()=" + getPrice() + ", getCname()="
+				+ getCname() + ", getSdate()=" + getSdate() + ", getPname()=" + getPname() + ", getSummary()="
+				+ getSummary() + ", getManuf_co()=" + getManuf_co() + ", getReldate()=" + getReldate() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	
 	

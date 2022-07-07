@@ -18,4 +18,12 @@ public class ProductDao {
 	public List<ProductVO> getCateList(ProductVO pVO){
 		return sqlSession.selectList("pSQL.cateList", pVO);
 	}
+	
+	public List<ProductVO> getProductList(ProductVO pVO) {
+		return sqlSession.selectList("pSQL.pList", pVO);
+	}
+	
+	public ProductVO getProductDetail(ProductVO pVO) {
+		return sqlSession.selectOne("pSQL.pDetail", pVO);
+	}
 }

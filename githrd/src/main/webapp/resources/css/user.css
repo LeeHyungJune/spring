@@ -52,6 +52,9 @@
 }
 
 /* 패딩 클래스*/
+.pdAll5 {
+	padding: 5px;
+}
 .pdAll10 {
 	padding: 10px;
 }

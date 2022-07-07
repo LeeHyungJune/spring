@@ -408,9 +408,27 @@
 --------------------------------------------------------------------------------------
 #	상품 페이지 폼 보기 요청
 요청내용	:	/www/cate/cateList.blp
-파라미터	:	x
+파라미터	:	upno
 컨트롤러	:	com.githrd.www.controller.Product
 처리함수	:	cateList()
 뷰			:	json [{"cno" : ????, "cname" : ???}, ...]
+
+--------------------------------------------------------------------------------------
+#	상품 리스트 폼 보기 요청
+요청내용	:	/www/cate/productList.blp
+파라미터	:	cno
+컨트롤러	:	com.githrd.www.controller.Product
+처리함수	:	productList()
+뷰			:	json [{"pno" : ????, "pname" : ???,
+ 						"dir": ???, "sname": ???, 
+ 						"price": ???, "manuf_co": ???}, ...]
+
+--------------------------------------------------------------------------------------
+#	상품 상세보기 폼 보기 요청
+요청내용	:	/www/cate/productDetail.blp
+파라미터	:	pno
+컨트롤러	:	com.githrd.www.controller.Product
+처리함수	:	productDetail()
+뷰			:	/WEB-INF/views/cate/productDetail.jsp
 
 --------------------------------------------------------------------------------------
