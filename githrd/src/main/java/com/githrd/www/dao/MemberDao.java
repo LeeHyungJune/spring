@@ -1,11 +1,11 @@
 package com.githrd.www.dao;
 
-import java.util.List;
+import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.*;
 
-import com.githrd.www.vo.MemberVO;
+import com.githrd.www.vo.*;
 
 public class MemberDao {
 	
@@ -16,7 +16,9 @@ public class MemberDao {
 	public int getLogin(MemberVO mVO) {
 		return sqlSession.selectOne("mSQL.login", mVO);
 	}
-	
+	public int getLogin(Map<String, String> map) {
+		return sqlSession.selectOne("mSQL.login", map);
+	}
 	// 아이디 카운트 조회
 	public int getIdCnt(String id) {
 		return sqlSession.selectOne("mSQL.idCnt", id);
@@ -58,5 +60,44 @@ public class MemberDao {
 	// 내 정보 수정 데이터베이스 작업 전담 처리함수
 	public int editMyInfo(MemberVO mVO) {
 		return sqlSession.update("mSQL.editInfo", mVO);
+	}
+	
+/* -------------------------------------------------------------------------------------- */
+	// 회원 이름 리스트 조회 전담 처리함수
+	public List<String> idList(){
+		return sqlSession.selectList("mSQL.memberIdList");
+	}
+	
+	// 회원 정보조회 전담 처리함수
+	public MemberVO membInfo(MemberVO mVO) {
+		return sqlSession.selectOne("dSQL.membInfo", mVO);
+	}
+	
+	public List<BoardVO> boardList(int mno){
+		return sqlSession.selectList("dSQL.boardList", mno);
+	}
+	
+	public List<BoardVO> reboardList(int mno){
+		return sqlSession.selectList("dSQL.reboardList", mno);
+	}
+	
+	// 게시글 백업 전담 처리함수
+	public int backupBoard(BoardVO bVO) {
+		return sqlSession.insert("dSQL.backupBrd", bVO);
+	}
+	
+	// 댓글게시판 게시글 백업 전담 처리함수
+	public int backupReBoard(BoardVO bVO) {
+		return sqlSession.insert("dSQL.backupRbrd", bVO);
+	}
+	
+	// 회원정보 백업 전담 처리함수
+	public int backupMember(MemberVO mVO) {
+		return sqlSession.insert("dSQL.backupMemb", mVO);
+	}
+	
+	// 회원 정보 삭제 전담 처리함수
+	public int delMemb(int mno) {
+		return sqlSession.delete("dSQL.delMember", mno);
 	}
 }

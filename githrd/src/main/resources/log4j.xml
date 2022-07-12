@@ -64,10 +64,24 @@
 		</layout>
 	</appender>
 	
+	<!-- emp log Appender -->
+	<appender name="empAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/src/main/resources/log/emp.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p - %d{yyyy/MM/dd HH:mm:ss} : %m%n" />
+		</layout>
+	</appender>
+	
 	<!-- Application Loggers -->
 	<logger name="com.githrd.www">
 		<level value="info" />
 		<appender-ref ref="file" /> <!-- 3. -->
+	</logger>
+	
+	<logger name="smithLogger">
+		<level value="info" />
+		<appender-ref ref="empAppender" />
 	</logger>
 	
 	<logger name="surveyLog">

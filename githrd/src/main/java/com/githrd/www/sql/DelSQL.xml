@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dSQL">
+	<!--  
+		삭제 작업이 이루어지기 전에 먼저 테이블의 데이터를 벡업해둔다.
+	-->
+	
+	<select id="membInfo" resultType="mVO" parameterType="mVO">
+		SELECT
+			mno, name, id, pw, mail, tel, avt ano, gen, joindate jdate
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+	
+	<select id="boardList" resultType="bVO" parameterType="int">
+		SELECT
+			bno, bmno mno, title, body, wdate, click
+		FROM
+			board
+		WHERE
+			bmno = #{mno}
+	</select>
+	
+	<select id="reboardList" resultType="bVO" parameterType="int">
+		SELECT 
+			DISTINCT rbno bno, upno, rbmno mno, body, wdate 
+		FROM 
+			reboard 
+		START WITH 
+			rbmno = #{mno} 
+		CONNECT BY 
+			PRIOR rbno = upno
+	</select>
+	
+	<!--  회원 정보 벡업 질의 명령 -->
+	<insert id="backupMemb" parameterType="mVO">
+		INSERT INTO member_back
+        VALUES(
+        	#{mno}, #{name}, #{id}, #{pw}, #{mail}, 
+        	#{tel}, #{ano}, #{gen}, TO_DATE(#{sdate}, 'yyyy/MM/dd HH24:MI:ss'), 'Y', sysdate
+        )
+	</insert>
+	
+	<!-- 게시글 백업 질의명령 -->
+	<insert id="backupBrd" parameterType="bVO">
+		INSERT INTO board_back
+		VALUES(
+			#{bno}, #{mno}, #{title}, #{body}, TO_DATE(#{sdate}, 'yyyy/MM/dd HH24:MI:ss'), #{click}, 'Y', sysdate
+		)
+	</insert>
+	
+	<!-- 댓글게시판 게시글 백업 질의명령 -->
+	<insert id="backupRbrd" parameterType="bVO">
+		INSERT INTO reboard_back
+		VALUES(
+			#{bno}, decode(#{upno}, 0, null, #{upno}), #{mno}, #{body}, 
+			TO_DATE(#{sdate}, 'yyyy/MM/dd HH24:MI:ss'), 'Y', sysdate
+		)
+	</insert>
+	
+	<!-- 회원 삭제 질의명령 -->
+	<delete id="delMember" parameterType="int">
+		DELETE FROM
+			member
+		WHERE
+			mno = #{mno}
+	</delete>
+</mapper>

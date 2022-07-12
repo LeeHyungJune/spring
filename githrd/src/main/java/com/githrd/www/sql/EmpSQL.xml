@@ -66,4 +66,13 @@
 		WHERE
 		    ename LIKE #{name} || '%' 
 	</select>
+	
+	<update id="upSal">
+		UPDATE
+			emp
+		SET
+			sal = sal + 10
+		WHERE
+			empno = 7369
+	</update>
 </mapper>

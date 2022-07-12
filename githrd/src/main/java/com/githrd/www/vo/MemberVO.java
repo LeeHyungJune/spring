@@ -37,13 +37,6 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
 	public String getPw() {
 		return pw;
 	}
@@ -68,12 +61,10 @@ public class MemberVO {
 	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
-	
 	public void setSdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
+		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		sdate = form.format(jdate);
 	}
-	
 	public String getGen() {
 		return gen;
 	}
@@ -86,6 +77,12 @@ public class MemberVO {
 	public void setSavename(String savename) {
 		this.savename = savename;
 	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public Date getJdate() {
 		return jdate;
 	}
@@ -93,7 +90,6 @@ public class MemberVO {
 		this.jdate = jdate;
 		setSdate();
 	}
-	
 	@Override
 	public String toString() {
 		return "MemberVO [mno=" + mno + ", ano=" + ano + ", cnt=" + cnt + ", id=" + id + ", name=" + name + ", pw=" + pw
